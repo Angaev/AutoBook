@@ -1,0 +1,52 @@
+{% extends "layout.twig" %}
+
+{% block title %}
+  {{ titleText }}
+{% endblock %}
+
+{% block content %}
+    {% include 'message.twig' %}
+      <div class="row">
+        <div class="col-md-10  col-md-offset-1">
+          <h3>Редактирование книги</h3>
+            <form action="actions/update_book.php" method="post" enctype="multipart/form-data">
+              <input type="hidden" value=" {{ bookId }}" name="bookId">
+              <label for="bookName">Название</label>
+              <input class="form-control" id="bookName" 
+              value="{{ book[0].name }}" name="name">
+              
+              <label for="houseName">Издательство</label>
+              <select name="publishing_house"  id="houseName" class="form-control">
+                <option disabled>Выберите издательство</option>
+                {% for item in publishing_houses %}
+                    <option {% if  book[0].house_name == item.house_name %} selected {% endif %} value="{{ item.id }}">{{ item.house_name }}</option>
+                {% endfor %}
+              </select>
+              
+              <label for="bookYear">Год издания</label>
+              <input type="text" class="form-control" name="year" value="{{ book[0].year }}" id="bookYear">
+              
+              <label for="bookLink">Ссылка на скачивание</label>
+              <input type="text" class="form-control" name="link" value="{{ link }}" id="bookLink">
+              
+              <label for="bookDescription">Описание книги</label>
+              <textarea id="bookDescription" class="form-control" name="book_description" rows="5" value>{{ description }}</textarea>
+              
+              <label>Обложка книги</label>
+              <input type="file" class="form-control" accept="image/*,image/jpeg" name="book_cover"/>
+              <div>
+                <input class="form-check-input" type="checkbox" name="deleteCover" id="delCover"/>
+                <label class="form-check-label" for="delCover">
+                  Удалить обложку
+                </label>
+              </div>
+              
+              <button type="submit" class="btn btn-success small_buttons_book">Обновить</button>
+            </form>
+            <form action="actions/delete_book.php" method="post">
+              <input value = "{{ bookId }}" type="hidden" name="delId">
+              <button type="submit" class="btn btn-link">Удалить книгу</button>
+            </form>
+        </div>
+      </div>
+{% endblock %}

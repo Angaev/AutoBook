@@ -1,0 +1,14 @@
+{% extends "layout.twig" %}
+
+{% block title %}
+  {{ titleText }}
+{% endblock %}
+
+{% block content %}
+  {% include 'message.twig' %}
+  {% include 'books.twig' %}
+{% endblock %}
+
+{% block pagination %}
+  {% include 'pagination.twig' %}
+{% endblock %}

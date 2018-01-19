@@ -1,0 +1,26 @@
+{% extends "layout.twig" %}
+
+{% block title %}
+  {{ titleText }}
+{% endblock %}
+
+{% block content %}
+    {% include 'message.twig' %}
+    <div class="row">
+      <div class="col-md-5">
+        <h3>Добавить обложку</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <form enctype="multipart/form-data" action="actions/add_book_cover.php" method="POST">
+          <div class="form-group">
+            <input type="hidden" name="book_id" value="{{ book_id }}">
+            <input type="file" class="form-control" accept="image/*,image/jpeg" name="cover"/>
+            <a href="new_book_description.php?id={{ book_id}}">Пропустить</a>
+          </div>
+          <button type="submit" class="btn btn-success small_buttons_book">Готово</button>
+        </form>
+      </div>
+    </div>
+{% endblock %}

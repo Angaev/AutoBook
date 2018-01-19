@@ -1,0 +1,42 @@
+{% extends "layout.twig" %}
+
+{% block title %}
+  {{ titleText }}
+{% endblock %}
+
+{% block content %}
+  {% include 'message.twig' %}
+  <div class="row">
+    <div class="col-md-6  col-md-offset-3">
+      <a href="new_book.php">Добавить книгу</a>
+      <h3>Добавление нового издательства в базу</h3>
+       <form action="actions/add_publishing_house.php" method="post">
+          <input type="text" class="form-control" id="new_publishing_house" name = "new_name" placeholder="Введите название добавляемого издательства" />
+          <button type="submit" class="btn btn-success small_buttons_book">Добавить</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6  col-md-offset-3">
+       <h3>Удаление издательства из базы</h3>
+       <p class="text-info">К удаляемому издательству, могут быть привязаны книги</р>
+       <form action="actions/delete_publishing_house.php" method="post">
+          <input type="text" class="form-control" id="delete_publishing_house" name = "delete_name" placeholder="Введите название удаляемого издательства" />
+          <button type="submit" class="btn btn-danger small_buttons_book">Удалить</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+       <h3>Переименование издательства в базе</h3>
+       <form action="actions/rename_publishing_house.php" method="post">
+          <input type="text" class="form-control" id="old_publishing_house" name = "old_name" placeholder="Введите изначальное название издательства" />
+          <input type="text" class="form-control small_buttons_book" id="rename_publishing_house" name = "rename" placeholder="Введите новое название издательства" />
+          <button type="submit" class="btn btn-warning small_buttons_book">Переименовать</button>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

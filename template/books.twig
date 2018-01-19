@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-6 text-left">
+      <h3>
+      {% if pageDescription is empty %}
+      Все книги
+      {% else %}
+        {{ pageDescription }}
+      {% endif %}
+      </h3>
+  </div>
+</div>
+<div class="row">
+{% for book in books %}
+  <div class="col-md-3 book_block">
+    <a href="book.php?book_id={{ book.id }}">
+      <div class="book_image_text_block">
+        <img src="{{ book.image }}" alt="Обложка книги" class="img-responsive left-block book_cover img-thumbnail">
+        <h3 class="display-1">{{ book.name }}</h3>
+      </div>
+      <small>{{ book.house_name }}</small>
+      <br>
+      <small>{{ book.year }}г.</small>
+      <br>
+      <span class="like_icon">
+        {{ book.likeCount }}
+      </span>
+      <span class="comment_icon">
+        {{ book.commentCount }}
+      </span>
+    </a>
+  </div>
+{% endfor %}  
+</div>
+    
+
+          

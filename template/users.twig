@@ -1,0 +1,49 @@
+{% extends "layout.twig" %}
+
+{% block title %}
+  {{ titleText }}
+{% endblock %}
+
+{% block content %}
+  {% include 'message.twig' %}
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>E-mail</th>
+            <th>Права</th>
+            <th>Бан</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+            <tr>
+              <td>{{ user.name }}</td>
+              <td>{{ user.subname }}</td>
+              <td>
+                <a href="mailto:{{ user.email }}">
+                    {{ user.email }}
+                </a>
+              </td>
+              <td>
+                <a href="actions/set_right.php?id={{ user.id }}" class="text-info"  
+                  title="{% if user.rights == "user" %}Одно нажатие - он админ{% else %}Нажмите чтобы разжалобить{% endif %}">
+                  {% if user.rights == "user" %}Пользователь{% else %}Администратор{% endif %}
+                </a>
+              </td>
+              <td>
+                <a href="actions/ban.php?id={{ user.id }}" class="text-info">
+                  {% if user.ban %}Разбанить{% else %}Забанить{% endif %}
+                </a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+    
+{% endblock %}

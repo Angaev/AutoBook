@@ -1,0 +1,50 @@
+{% extends "layout.twig" %}
+
+{% block title %}
+  {{ titleText }}
+{% endblock %}
+
+{% block content %}
+    {% include 'message.twig' %}
+      <div class="row">
+        <div class="col-md-10  col-md-offset-1">
+          <h3>Редактирование персональных данных</h3>
+            <form action="actions/update_user.php" method="post" enctype="multipart/form-data">
+              <input type="hidden" value=" {{ userId }}" name="userId">
+              <label for="username">Имя</label>
+              <input class="form-control" id="username" value="{{ user[0].Name }}" name="name" autocomplete="off">
+              
+              <label for="usersubname">Фамилия</label>
+              <input class="form-control" id="usersubname" 
+              value="{{ user[0].Subname }}" name="subname" autocomplete="off">
+
+              <label for="userEmail">E-mail</label>
+              <input class="form-control" id="userEmail" 
+              value="{{ user[0].email }}" name="email" autocomplete="off">
+
+              <label for="userOldPass">Старый пароль</label>
+              <input type="password" class="form-control" id="userOldPass" 
+              value="" name="oldPass" placeholder="Обязательно">
+              
+              <label for="userNewPass1">Новый пароль</label>
+              <input type="password" class="form-control" id="userNewPass1" 
+              value="" name="pass1" placeholder="Запонить, если нужно обновить">
+              
+              <label for="userNewPass2">Повторите новый пароль</label>
+              <input type="password" class="form-control" id="userNewPass2" 
+              value="" name="pass2">
+              
+              <label>Ваша фотография</label>
+              <input type="file" class="form-control" accept="image/*,image/jpeg" name="avatar"/>
+              <div>
+                <input class="form-check-input" type="checkbox" name="deleteAvatar" id="delAvatar"/>
+                <label class="form-check-label" for="delAvatar">
+                  Удалить аватар
+                </label>
+              </div>
+              
+              <button type="submit" class="btn btn-success small_buttons_book">Обновить</button>
+            </form>
+        </div>
+      </div>
+{% endblock %}

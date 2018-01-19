@@ -1,0 +1,87 @@
+#headerwrap{
+  margin-top:60px;
+}
+
+.book_cover
+{
+  width: 250px;
+}
+
+.book_block
+{
+  padding: 30px;
+  height: 550px;
+}
+
+.book_block:hover
+{
+  background: #eee;
+  border-radius: 10px;
+}
+
+.book_block a
+{
+ display: block; /* Ссылка как блочный элемент */
+ height: 100%; /* Высота на весь слой */
+ text-decoration: none;
+ color: inherit;
+}
+
+.like_icon
+{
+  background-image:url(../img/like_icon.png);
+  background-repeat: no-repeat;
+  background-size: 17px;
+  padding-left: 25px;
+}
+
+.comment_icon
+{
+  background-image:url(../img/comment_icon.png);
+  background-repeat: no-repeat;
+  background-size: 17px;
+  padding-left: 25px;
+  margin-left: 10px;
+}
+
+
+.book_big_cover
+{
+  width: 400px;
+}
+
+.like_big_icon
+{
+  background-image:url(../img/like_icon.png);
+  background-repeat: no-repeat;
+  background-size: 30px;
+  padding-left: 30px;
+  font-size: 30px;
+}
+
+.comment_big_icon
+{
+  background-image:url(../img/comment_icon.png);
+  background-repeat: no-repeat;
+  background-size: 30px;
+  padding-left: 30px;
+  margin-left: 30px;
+  font-size: 30px;
+  background-position-y: 2px;
+}
+
+.buttons_book
+{
+  margin-top: 50px;
+}
+
+.small_buttons_book
+{
+  margin-top: 20px;
+}
+
+.book_image_text_block
+{
+  height: 445px;
+  overflow: hidden;
+}

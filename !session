@@ -1,0 +1,16 @@
+<NotepadPlus>
+    <Session activeView="1">
+        <mainView activeIndex="0" />
+        <subView activeIndex="3">
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="656" startPos="44" endPos="44" selMode="0" lang="PHP" encoding="-1" filename="C:\dev\projects\local\autobook\include\http.inc.php" backupFilePath="" originalFileLastModifTimestamp="1513762847" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="624" startPos="647" endPos="647" selMode="0" lang="PHP" encoding="-1" filename="C:\dev\projects\local\autobook\rename_publishing_house.php" backupFilePath="" originalFileLastModifTimestamp="1513762937" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="912" startPos="99" endPos="124" selMode="0" lang="PHP" encoding="-1" filename="C:\dev\projects\local\autobook\include\publishingHouses.inc.php" backupFilePath="" originalFileLastModifTimestamp="1513706605" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="496" startPos="456" endPos="456" selMode="0" lang="PHP" encoding="-1" filename="C:\dev\projects\local\autobook\delete_publishing_house.php" backupFilePath="" originalFileLastModifTimestamp="1513761994" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1632" startPos="455" endPos="458" selMode="0" lang="Twig2" encoding="-1" filename="C:\dev\projects\local\autobook\template\layout.twig" backupFilePath="" originalFileLastModifTimestamp="1513764235" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1312" startPos="795" endPos="795" selMode="0" lang="HTML" encoding="-1" filename="C:\dev\projects\local\autobook\template\edit_publishing_house_forms.twig" backupFilePath="" originalFileLastModifTimestamp="1513765332" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="264" startPos="229" endPos="229" selMode="0" lang="&#x041E;&#x0431;&#x044B;&#x0447;&#x043D;&#x044B;&#x0439; &#x0422;&#x0435;&#x043A;&#x0441;&#x0442;" encoding="-1" filename="C:\dev\projects\local\autobook\template\index.twig" backupFilePath="" originalFileLastModifTimestamp="1513689610" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="496" startPos="441" endPos="441" selMode="0" lang="PHP" encoding="-1" filename="C:\dev\projects\local\autobook\edit_publishing_houses.php" backupFilePath="" originalFileLastModifTimestamp="1513764990" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="392" startPos="28" endPos="28" selMode="0" lang="CSS" encoding="-1" filename="C:\dev\projects\local\autobook\css\main.css" backupFilePath="" originalFileLastModifTimestamp="1513765144" />
+        </subView>
+    </Session>
+</NotepadPlus>

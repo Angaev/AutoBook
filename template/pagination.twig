@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 text-center">
+    <ul class="pagination">
+      <li {% if pointer == 'leftOff' or pointer == 'offAll' %} class="disabled" {% endif %}>
+          <a {% if pointer != 'leftOff' or pointer != 'offAll'%} href="{{pageName}}"{% endif %}>
+            «
+          </a>
+      </li>
+      {% for page in pageList %}
+        <li><a href="{{pageName}}?page={{page}}">{{page}}</a></li>
+      {% endfor %}
+      <li {% if pointer == 'rightOff' or pointer == 'offAll' %} class="disabled" {% endif %}>
+        <a {% if pointer != 'rightOff' or pointer != 'offAll' %} href="{{pageName}}?page={{lastPage}}" {% endif %}>
+          »
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

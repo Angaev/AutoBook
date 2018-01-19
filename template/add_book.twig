@@ -1,0 +1,40 @@
+{% extends "layout.twig" %}
+
+{% block title %}
+  {{ titleText }}
+{% endblock %}
+
+{% block content %}
+    {% include 'message.twig' %}
+
+    <div class="row">
+      <div class="col-md-5">
+        <h3>Добавление новой книги в базу</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <form action="actions/add_book.php" method="post">
+          <div class="form-group">
+            <label>Выберите издательство</label>
+            <select name="publishing_house" class="form-control" >
+              <option disabled>Выберите издательство</option>
+              {% for item in publishing_houses %}
+                  <option value="{{ item.id }}">{{ item.house_name }}</option>
+              {% endfor %}
+            </select>
+            <a href="edit_publishing_houses.php">Добавить новое издательство</a>
+          </div>
+          <div class="form-group">
+            <label>Название книги</label>
+            <input type="text" class="form-control" name="book_name" placeholder="Введите название книги">
+          </div>
+          <div class="form-group">
+            <label>Год издания</label>
+            <input type="text" class="form-control" name="year" placeholder="Введите год издания (только цифры)">
+          </div>
+          <button type="submit" class="btn btn-success small_buttons_book">Далее</button>
+        </form>
+      </div>
+    </div>
+{% endblock %}
