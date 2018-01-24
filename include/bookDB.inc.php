@@ -272,8 +272,6 @@
         $query = 'SELECT actual FROM likes 
                   WHERE user_id = "' . dbQuote($userId) . '" and book_id = "' . dbQuote($bookId).'" ';
         $result = dbQueryGetResult($query);
-        //нехватает проверки на пустой массив
-        var_dump($result);
         return ($result[0]["actual"] == 1);
     }
     

@@ -201,3 +201,22 @@
                       
         return dbQuery($query);
     }
+    
+    
+    function getUserData($id)
+    {
+
+        if ($id == NULL) {
+            return false;
+        }
+
+        $query = '
+                  SELECT
+                      Name, Subname, img
+                  FROM users
+                  WHERE
+                      id = "'. dbQuote($id) .'"
+                  ';
+        $result = dbQueryGetResult($query);
+        return($result[0]);
+    }

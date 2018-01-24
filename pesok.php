@@ -17,7 +17,7 @@ $query = 'select books.id, books.name, books.year, books.image, books.image, pub
             likes.book_id = books.id
           ';
             
-$vars = dbQueryGetResult($query);
+//$vars = dbQueryGetResult($query);
 
 // if (isUserLogin()) {
     // echo 'Этот залогинен';
@@ -61,7 +61,11 @@ if (isUserLogin()) {
 $bookId = 4;
 $link = 'www.yandex.ru';
 
-$id = 88;
+    if (!isset($_SESSION['user_id'])) {
+        $userId = null;
+    } else {
+        $userId = $_SESSION['user_id'];
+    }
 // if (isUserBan($id)) {
     // echo 'Бан';
 // } else {
@@ -71,4 +75,7 @@ $id = 88;
 $login = 'ban@ban.ru';
 $pass = 'password';
 $name = 'acura';
-echo (getCountBooksByName($name));
+$book_id = 2;
+$commentId = 8;
+//echo (getCountCommentsBook($book_id));
+var_dump(deleteComment($commentId));

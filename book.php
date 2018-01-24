@@ -12,12 +12,19 @@
         if ($_GET['result'] == 3) {
             $message = 'Книга обнолена';
         }
+        if ($_GET['result'] == 4) {
+            $message = 'Комментарий удален';
+        }
     }
     if (empty($_GET['book_id'])) {
        redirect('index.php');
     }
     $id = $_GET['book_id'];
-    $userId = $_SESSION['user_id'];
+    if (!isset($_SESSION['user_id'])) {
+        $userId = null;
+    } else {
+        $userId = $_SESSION['user_id'];
+    }
     
     if (isUserLogin()) {
       if (isUserAlreadyLikeBook($userId, $id)) {
@@ -41,6 +48,11 @@
         'likeBtn' => $likeBtn,
         'bookId' => $id,
         'admin' => isAdmin(),
-        'message' => $message
-        );
+        'message' => $message,
+        'countComment' => getCountCommentsBook($id),
+        'isUserLogin' => isUserLogin(),
+        'isUserAdmin' => isAdmin(),
+       'userData' => getUserData($userId),
+       'commentsData' => getCommentsBook($id)
+         );
     echo getView('book.twig', $vars);
