@@ -400,5 +400,85 @@
         return dbQuery($query);
     }
     
+    function getLikesBooks($userId, $limit)
+    {
+        $query = '
+                  SELECT 
+                    B.name, b.image, b.id
+                  FROM
+                    likes as L
+                  INNER JOIN
+                    Books as B ON L.book_id = B.id
+                  WHERE
+                    L.user_id = "'. dbQuote($userId) .'"
+                    AND
+                    L.actual = 1
+                  ORDER BY
+                    L.date DESC
+                  LIMIT '. dbQuote($limit) .'
+                  ';
+        return dbQueryGetResult($query);
+    }
     
+    function getAllLikedBooks($userId, $page)
+    {
+       $start = ($page - 1) * LIMIT_ON_PAGE;
+        $query = "
+              select books.id, books.name, books.year,  publishing_houses.house_name,
+                IFNULL(books.image, 'img/book_cover/no_cover.png') as image,
+                IFNULL(res.likeResCount, 0) as likeCount,
+                IFNULL(commentRes.commentResCount, 0) as commentCount
+              from books 
+              left join 
+                publishing_houses 
+                  on books.publishing_house_id = publishing_houses.id
+              left join 
+                (
+                  SELECT COUNT(likes.book_id) as likeResCount, books.id  as book_id
+                    FROM likes 
+                    LEFT JOIN 
+                      books on books.id = likes.book_id  
+                    WHERE likes.actual = 1 
+                    group BY books.id 
+                ) AS res on res.book_id = books.id
+              left join
+                (
+                  SELECT COUNT(comments.book_id) as commentResCount, books.id as book_id
+                  FROM 
+                    comments
+                  LEFT JOIN 
+                    books ON books.id = comments.book_id
+                  WHERE comments.actual = 1
+                  GROUP BY
+                    books.id 
+                ) as commentRes on commentRes.book_id = books.id
+              INNER JOIN
+                likes as L on books.id = L.book_id
+              WHERE 
+                L.user_id = '". dbQuote($userId) ."'
+                AND
+                L.actual = 1
+              LIMIT ".dbQuote($start) .", ". dbQuote(LIMIT_ON_PAGE);
+
+        return dbQueryGetResult($query);
+    }
     
+    function getCountLikedBooks($userId)
+    {
+        $query = '
+                  SELECT COUNT(*) as Count
+                  FROM
+                    Books as B
+                  INNER JOIN
+                    likes as L on B.id = L.book_id
+                  WHERE
+                    L.user_id = "'. dbQuote($userId) .'"
+                    AND
+                    L.actual = 1
+                  ';
+        $result = dbQueryGetResult($query);
+        if (!empty($result)) {
+            return $result[0]["Count"];
+        }
+        return false;
+    }

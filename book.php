@@ -51,8 +51,7 @@
         'message' => $message,
         'countComment' => getCountCommentsBook($id),
         'isUserLogin' => isUserLogin(),
-        'isUserAdmin' => isAdmin(),
-       'userData' => getUserData($userId),
-       'commentsData' => getCommentsBook($id)
+        'userData' => getUserData($userId),
+        'commentsData' => getCommentsBook($id)
          );
     echo getView('book.twig', $vars);

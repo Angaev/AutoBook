@@ -20,12 +20,10 @@
       'activeMenu' => '2', 
       'headerData' => loadHeaderLinks(),
       'userData' => loadUserData($userId),
-      'admin' => isAdmin(),
-      'titleText' => 'Личный кабинет',
-      'lastComment' => getLastComment($userId),
-      'books' => getLikesBooks($userId, 6),
+      'titleText' => 'Все комментарии',
+      'allComments' => getAllComment($userId),
       'message' => $message
       );
-  // var_dump($vars["books"]);
+  // var_dump($vars["allComments"]);
   // die();
-  echo getView('area.twig', $vars);
+  echo getView('all_comments.twig', $vars);

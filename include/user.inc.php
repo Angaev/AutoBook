@@ -153,11 +153,12 @@
     
     function loadUserData($id) 
     {
-        $query = 'SELECT email, Name, Subname
+        $query = 'SELECT email, Name, Subname, img
                   FROM users
                   WHERE id = '. $id .'
                   ';
-        return dbQueryGetResult($query);
+        $result = dbQueryGetResult($query);
+        return $result[0];
     }
     
     function updateUserName($userData) 

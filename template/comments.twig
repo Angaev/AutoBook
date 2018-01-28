@@ -8,18 +8,15 @@
     {% if isUserLogin %}
     <div class="comment ">
       <div class="row">
-        <div class="col-md-2">
-          <img src={% if userData["img"] == null %} "img/avatar/noavatar.png" {% else %} "{{ userData["img"] }}"{% endif %} class="img-responsive img-circle">
-        </div>
-        <div class="col-md-10">
-            <form action="actions/add_comment.php" method="post">
-              <div class="form-group">
-                <textarea class="form-control" name="text" placeholder="Написать комментарий" required 
-                rows="4"></textarea>
-                <input type="hidden" name="book_id" value="{{ bookId }}"/>
-              </div>
-              <button type="submit" class="btn btn-primary pull-right">Отправить</button>
-            </form>
+        <div class="col-md-12">
+          <form action="actions/add_comment.php" method="post">              
+            <div class="form-group">
+              <textarea class="form-control" name="text" placeholder="Написать комментарий" required 
+              rows="4"></textarea>
+              <input type="hidden" name="book_id" value="{{ bookId }}"/>
+            </div>
+            <button type="submit" class="btn btn-primary pull-right">Отправить</button>
+          </form>
         </div>
       </div>
     </div>
@@ -28,11 +25,13 @@
     {% for comment in commentsData %}
       <div class="comment">
         <div class="row">
-          <div class="col-md-2">
-            <img src={% if comment.img == null %} "img/avatar/noavatar.png" {% else %} "{{ userData["img"] }}"{% endif %} class="img-responsive img-circle">
-          </div>
-          <div class="col-md-10">
+          <div class="col-md-12">
             <div class="userName ">
+              <div class="pull-left" style="width 100px; height:100px;">
+                <img 
+                    src={% if comment.img == null %} "img/avatar/noavatar.png" {% else %} "{{ comment.img }}"{% endif %} 
+                    class="img-responsive img-circle avatar">
+              </div>
               <span> 
                 {{ comment.Name }} {{ comment.Subname }} 
               </span>
@@ -44,7 +43,7 @@
               <span>{{ comment.comment|e|nl2br }}</span>
             </div>
           </div>
-          {% if isUserAdmin %}
+          {% if admin %}
             <form action="actions/delete_comment.php" method="post">
               <input type="hidden" name="commentId" value="{{ comment.id }}">
               <input type="hidden" name="bookId" value="{{ comment.book_id }}">

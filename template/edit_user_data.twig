@@ -12,19 +12,19 @@
             <form action="actions/update_user.php" method="post" enctype="multipart/form-data">
               <input type="hidden" value=" {{ userId }}" name="userId">
               <label for="username">Имя</label>
-              <input class="form-control" id="username" value="{{ user[0].Name }}" name="name" autocomplete="off">
+              <input class="form-control" id="username" value="{{ user["Name"] }}" name="name" autocomplete="off" required>
               
               <label for="usersubname">Фамилия</label>
               <input class="form-control" id="usersubname" 
-              value="{{ user[0].Subname }}" name="subname" autocomplete="off">
+              value="{{ user["Subname"] }}" name="subname" autocomplete="off" required>
 
               <label for="userEmail">E-mail</label>
               <input class="form-control" id="userEmail" 
-              value="{{ user[0].email }}" name="email" autocomplete="off">
+              value="{{ user["email"] }}" name="email" autocomplete="off">
 
               <label for="userOldPass">Старый пароль</label>
               <input type="password" class="form-control" id="userOldPass" 
-              value="" name="oldPass" placeholder="Обязательно">
+              value="" name="oldPass" placeholder="Обязательно" required>
               
               <label for="userNewPass1">Новый пароль</label>
               <input type="password" class="form-control" id="userNewPass1" 

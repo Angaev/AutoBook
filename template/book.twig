@@ -23,17 +23,19 @@
       <div class="buttons_book">
         <a target="_blank" href="{% if link is empty %} # {% else %} {{ link }} {% endif %}" type="button" class="btn btn-success btn-lg 
         {% if link is  empty %} disabled {% endif %}">
-          {% if link is  empty %} Нет активной ссылки {% else %} Скачать {% endif %}
+          {% if link is  empty %} Нет активной ссылки {% else %} <span class="	glyphicon glyphicon-download"></span> Скачать {% endif %}
         </a>
-        <a href="actions/like_book.php?id={{ bookId }}" type="button" class="btn {% if likeBtn == 'lock' %}btn-primary {% elseif  likeBtn == 'free' %} btn-info  {% elseif likeBtn == 'off' %} btn-info disabled {% endif %} btn-lg "> 
-          {% if  likeBtn == 'free' %} 
-            <span class="glyphicon glyphicon-heart"></span> 
-            Мне нравится
-          {% else %}
-            <span class="glyphicon glyphicon-thumbs-down"></span>
-            Больше не нравится
-          {%endif%}
-        </a>
+        {% if likeBtn != 'off' %}
+          <a href="actions/like_book.php?id={{ bookId }}" type="button" class="btn {% if likeBtn == 'lock' %}btn-primary {% elseif  likeBtn == 'free' %} btn-info {% endif %} btn-lg "> 
+            {% if  likeBtn == 'free' %} 
+              <span class="glyphicon glyphicon-heart"></span> 
+              Мне нравится
+            {% else %}
+              <span class="glyphicon glyphicon-thumbs-down"></span>
+              Больше не нравится
+            {%endif%}
+          </a>
+        {% endif %}
         
         {% if admin %}
           <a href="edit_book.php?id={{ bookId }}" type="button" class="btn btn-danger btn-lg "> 

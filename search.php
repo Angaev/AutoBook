@@ -39,4 +39,5 @@
         'message' => $message,
         'pageDescription' => 'Книги по запросу: ' . $name
         );
+    // var_dump($vars["pointer"]);
     echo getView('index.twig', $vars);
