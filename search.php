@@ -9,11 +9,10 @@
         }
     }
     
-    if (!empty($_GET['name'])) {
-        $name = $_GET['name'];
-    } else {
-      redirect('index.php');
-    }
+    if (empty($_GET['name'])) {
+        redirect('index.php');  
+    } 
+    $name = $_GET['name'];
 
     if (empty($_GET['page'])) {
         $page = 1;
@@ -30,7 +29,7 @@
         'headerData' => loadHeaderLinks(),
         'titleText' => 'Поиск ' . $name,
         'books' => getBooksByName($name, $page),
-          
+        'search' => $name,
         'pageList' => getPageList($page, $lastPage),
         'pageName' => $_SERVER['SCRIPT_NAME'],
         'pointer' => getPointerState($page, $lastPage),
