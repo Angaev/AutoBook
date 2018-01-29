@@ -128,3 +128,22 @@
 {
   color: gray;
 }
+
+.no_horizontal_scroll 
+{
+  overflow-x: hidden;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) 
+{
+  #headerwrap
+    {
+    margin-top:100px;
+  }
+  
+  .container 
+    {
+    width: 800px;
+  }
+}
+
