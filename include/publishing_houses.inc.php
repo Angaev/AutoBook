@@ -5,55 +5,37 @@
     function checkPublishingHouseExist($name)
     {
         $query = '
-            SELECT * FROM publishing_houses WHERE house_name = "'. $name . '"';
+            SELECT * FROM publishing_houses WHERE house_name = "' . dbQuote($name) . '"';
         $answer = dbQueryGetResult($query);
         
-        if (!empty(dbQueryGetResult($query))) {
-            return true;
-            //такая книга есть
-        } else {
-            return false;
-            //такой книги нет
-        }
+        return (!empty(dbQueryGetResult($query)));
+        
     }
     
     //фукнция добавления издательства
     function addPublishingHouse($name)
     {
-        if (!checkPublishingHouseExist($name)) {  
-          $query = '
-              INSERT INTO publishing_houses (house_name) VALUES("'. $name . '")';
-              
-          if (dbQuery($query)) {
-              return true;
-          } else {
-              return false;
-          }
-        } else {
-            return false;
+        if (checkPublishingHouseExist($name)) {
+          return false;
         }
+        $query = '
+            INSERT INTO publishing_houses (house_name) VALUES("' . dbQuote($name) . '")';            
+        return dbQuery($query);
+          
     }
     
     //фукнция удаления издательства    
     function deletePublishingHouse($name)
     {
-        $query = 'DELETE FROM publishing_houses WHERE house_name = "'. $name .'"';
-        if (dbQuery($query)) {
-            return true;
-        } else {
-            return false;
-        }
+        $query = 'DELETE FROM publishing_houses WHERE house_name = "' . dbQuote($name) . '"';
+        return dbQuery($query);
     }
     
     //функция переименовывает издательство
     function renamePublishingHouse($oldName, $newName)
     {
-        $query = 'UPDATE publishing_houses SET house_name = "'. $newName .'" WHERE house_name = "'. $oldName .'"';
-        if (dbQuery($query)) {
-            return true;
-        } else {
-            return false;
-        }
+        $query = 'UPDATE publishing_houses SET house_name = "' . dbQuote($newName) . '" WHERE house_name = "' . dbQuote($oldName) . '"';
+        return dbQuery($query);
     }
     
     //функция возвращает все издательства в алфавитном порядке

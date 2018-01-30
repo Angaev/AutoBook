@@ -1,56 +1,20 @@
 <?php
     //здесь хранятся функции работы с БД для книг
     
-    function loadAllDataAboutBooks()
-    {
-        $query = '
-              select books.id, books.name, books.year,  publishing_houses.house_name, 
-                IFNULL(books.image, "img/book_cover/no_cover.png") as image,
-                IFNULL(res.likeCount, 0) as likeCount,
-                IFNULL(commentRes.commentResCount, 0) as commentCount
-              from books 
-              left join 
-                publishing_houses 
-                  on books.publishing_house_id = publishing_houses.id
-              left join 
-                (
-                  SELECT COUNT(likes.book_id) as likeCount, books.name  as name
-                    from likes 
-                    left join books on likes.book_id = books.id 
-                    WHERE 
-                      likes.actual = 1 
-                    group BY books.name 
-                ) AS res on res.name = books.name
-              left join
-                (
-                  SELECT COUNT(comments.book_id) as commentResCount, books.id as book_id
-                  FROM 
-                    comments
-                  LEFT JOIN 
-                    books ON books.id = comments.book_id
-                  WHERE comments.actual = 1
-                  GROUP BY
-                    books.id 
-                ) as commentRes on commentRes.book_id = books.id
-              ORDER BY books.id DESC
-              ';
-        return dbQueryGetResult($query);
-    }
-    
     function loadDataBooks($page)
     {
         
         $start = ($page - 1) * LIMIT_ON_PAGE;
         $query = '
-              select books.id, books.name, books.year,  publishing_houses.house_name, 
+              SELECT books.id, books.name, books.year,  publishing_houses.house_name, 
                 IFNULL(books.image, "img/book_cover/no_cover.png") as image,
                 IFNULL(res.likeResCount, 0) as likeCount,
                 IFNULL(commentRes.commentResCount, 0) as commentCount
-              from books 
-              left join 
+              FROM books 
+              LEFT JOIN 
                 publishing_houses 
                   on books.publishing_house_id = publishing_houses.id
-              left join 
+              LEFT JOIN 
                 (
                   SELECT COUNT(likes.book_id) as likeResCount, books.id  as book_id
                     FROM likes 
@@ -59,7 +23,7 @@
                     WHERE likes.actual = 1 
                     group BY books.id 
                 ) AS res on res.book_id = books.id
-              left join
+              LEFT JOIN
                 (
                   SELECT COUNT(comments.book_id) as commentResCount, books.id as book_id
                   FROM 
@@ -71,7 +35,7 @@
                     books.id 
                 ) as commentRes on commentRes.book_id = books.id
               ORDER BY books.id DESC
-              LIMIT '.dbQuote($start) .', '. dbQuote(LIMIT_ON_PAGE);
+              LIMIT ' . dbQuote($start) . ', ' . dbQuote(LIMIT_ON_PAGE);
         return dbQueryGetResult($query);
     }
     
@@ -79,7 +43,7 @@
     function addBook($name, $year, $houseId)
     {
         $query = "INSERT INTO books (name, publishing_house_id, year) 
-            VALUES('". dbQuote($name) ."', '". dbQuote($houseId) ."', '". dbQuote($year) ."')";
+            VALUES('" . dbQuote($name) . "', '" . dbQuote($houseId) . "', '" . dbQuote($year) . "')";
         dbQuery($query);
     }
     
@@ -94,19 +58,14 @@
     //img/book_cover/cover.jpg  например
     function addBookCover($id, $path)
     {
-        $query = 'UPDATE books set image = "'. dbQuote($path) .'" WHERE id = '. dbQuote($id);
-        if (dbQuery($query)) {
-            return true;
-        } else {
-            return false;
-        }
+        $query = 'UPDATE books set image = "' . dbQuote($path) . '" WHERE id = ' . dbQuote($id);
+        return dbQuery($query);
     }
     
     
     function addBookDescription($book_id, $description)
     {
-        $query = "INSERT INTO book_description (book_id, description) VALUES('". dbQuote($book_id) ."', '". 
-                  dbQuote($description) ."')";
+        $query = "INSERT INTO book_description (book_id, description) VALUES('" . dbQuote($book_id) . "', '" . dbQuote($description) . "')";
         
         return dbQuery($query);
     }
@@ -124,15 +83,15 @@
     {        
         $start = ($page - 1) * LIMIT_ON_PAGE;
         $query = "
-              select books.id, books.name, books.year,  publishing_houses.house_name, 
+              SELECT books.id, books.name, books.year,  publishing_houses.house_name, 
                 IFNULL(books.image, 'img/book_cover/no_cover.png') as image,
                 IFNULL(res.likeResCount, 0) as likeCount,
                 IFNULL(commentRes.commentResCount, 0) as commentCount
-              from books 
-              left join 
+              FROM books 
+              LEFT JOIN 
                 publishing_houses 
                   on books.publishing_house_id = publishing_houses.id
-              left join 
+              LEFT JOIN 
                 (
                   SELECT COUNT(likes.book_id) as likeResCount, books.id  as book_id
                     FROM likes 
@@ -141,7 +100,7 @@
                     WHERE likes.actual = 1 
                     group BY books.id 
                 ) AS res on res.book_id = books.id
-              left join
+              LEFT JOIN
                 (
                   SELECT COUNT(comments.book_id) as commentResCount, books.id as book_id
                   FROM 
@@ -153,7 +112,7 @@
                     books.id 
                 ) as commentRes on commentRes.book_id = books.id
               WHERE books.name LIKE '%" . dbQuote($name) . "%'
-              LIMIT ".dbQuote($start) .", ". dbQuote(LIMIT_ON_PAGE);
+              LIMIT " . dbQuote($start) . ", " . dbQuote(LIMIT_ON_PAGE);
 
         return dbQueryGetResult($query);
     }
@@ -166,15 +125,15 @@
             $onPage = 10;
         }
         $query = '
-              select books.id, books.name, books.year,  publishing_houses.house_name, 
+              SELECT books.id, books.name, books.year,  publishing_houses.house_name, 
                 IFNULL(books.image, "img/book_cover/no_cover.png") as image,
                 IFNULL(res.likeResCount, 0) as likeCount,
                 IFNULL(commentRes.commentResCount, 0) as commentCount
               from books 
-              left join 
+              LEFT JOIN 
                 publishing_houses 
                   on books.publishing_house_id = publishing_houses.id
-              left join 
+              LEFT JOIN 
                 (
                   SELECT COUNT(likes.book_id) as likeResCount, books.id  as book_id
                     FROM likes 
@@ -183,7 +142,7 @@
                     WHERE likes.actual = 1 
                     group BY books.id 
                 ) AS res on res.book_id = books.id
-              left join
+              LEFT JOIN 
                 (
                   SELECT COUNT(comments.book_id) as commentResCount, books.id as book_id
                   FROM 
@@ -195,7 +154,7 @@
                     books.id 
                 ) as commentRes on commentRes.book_id = books.id
               ORDER BY likeCount DESC
-              LIMIT '.dbQuote($start) .', '. dbQuote(LIMIT_ON_PAGE).'';
+              LIMIT ' . dbQuote($start) . ', ' . dbQuote(LIMIT_ON_PAGE) . '';
         return dbQueryGetResult($query);
     }
     
@@ -230,14 +189,14 @@
                   GROUP BY
                     books.id 
                 ) as commentRes on commentRes.book_id = books.id
-              WHERE books.id = '. dbQuote($id);
+              WHERE books.id = ' . dbQuote($id);
         return dbQueryGetResult($query);
     }
     
     function loadDescription($id)
     {
         $query = 'SELECT description as text FROM book_description
-                 WHERE book_id = '. dbQuote($id);
+                 WHERE book_id = ' . dbQuote($id);
         $data = dbQueryGetResult($query);
         return isset($data[0]['text']) ? $data[0]['text'] : '';
     }
@@ -256,7 +215,7 @@
     function addBookLink($bookId, $link)
     {
         $query = 'INSERT INTO book_links (book_id, link)
-                  VALUES ( "'.dbQuote($bookId).'", "'.dbQuote($link).'")';
+                  VALUES ("' . dbQuote($bookId) . '", "' . dbQuote($link) . '")';
         return dbQuery($query);
     }
     
@@ -270,7 +229,7 @@
     function isActualLike($userId, $bookId)
     {
         $query = 'SELECT actual FROM likes 
-                  WHERE user_id = "' . dbQuote($userId) . '" and book_id = "' . dbQuote($bookId).'" ';
+                  WHERE user_id = "' . dbQuote($userId) . '" and book_id = "' . dbQuote($bookId) . '" ';
         $result = dbQueryGetResult($query);
         return ($result[0]["actual"] == 1);
     }
@@ -278,11 +237,9 @@
     function flipActualLike($userId, $bookId) 
     {
         if (isActualLike($userId, $bookId)) {
-            //единицу на ноль
             $query = 'UPDATE likes SET actual = 0 
                       WHERE user_id = "' . dbQuote($userId) . '" and book_id = "' . dbQuote($bookId).'" ';
         } else {
-            //ноль на единицу
             $query = 'UPDATE likes SET actual = 1 
             WHERE user_id = "' . dbQuote($userId) . '" and book_id = "' . dbQuote($bookId).'" ';
         }
@@ -291,16 +248,10 @@
     
     function likeBook($userId, $bookId)
     {
-        /*
-          определиться не лайкал ли эту книгу этот пользователь ранее?
-          если да, то 
-              перевернуть значение актуальности
-          иначе создать новую строку в таблице 
-        */
         if (isUserAlreadyLikeBook($userId, $bookId)) {
             return flipActualLike($userId, $bookId);
         } else {
-            $query = 'INSERT INTO likes (user_id, book_id) VALUES ('. dbQuote($userId) .', '. dbQuote($bookId) .')';
+            $query = 'INSERT INTO likes (user_id, book_id) VALUES (' . dbQuote($userId) . ', ' . dbQuote($bookId) . ')';
             return dbQuery($query);
         }
         
@@ -311,7 +262,9 @@
     {
         $query = 'SELECT COUNT(*) as CNT FROM books';
         $result = dbQueryGetResult($query);
-        return $result[0]["CNT"];
+        if (!empty($result)) {
+            return $result[0]["CNT"];
+        }
     }
     
     function deleteBook($id)
@@ -323,20 +276,18 @@
     //обновляет название, издательство, год, ссылку книги, данные берет из bookInfo
     function updateBook($bookInfo) 
     {
-        //image = "'. dbQuote($bookInfo['book_cover']) .'"
         $query = 'UPDATE books SET 
-                    name = "' . dbQuote($bookInfo['name']) .'", 
-                    publishing_house_id = "'. dbQuote($bookInfo['publishing_house']) .'",
-                    year = "'. dbQuote($bookInfo['year']) .'"
-                  WHERE books.id = "'. dbQuote($bookInfo['bookId']) .'"
-                  ';
+                    name = "' . dbQuote($bookInfo['name']) . '", 
+                    publishing_house_id = "' . dbQuote($bookInfo['publishing_house']) . '",
+                    year = "' . dbQuote($bookInfo['year']) . '"
+                  WHERE books.id = "' . dbQuote($bookInfo['bookId']) . '"';
         return dbQuery($query);
     }
     
 
     function isBookDescriptionEmpty($id)
     {
-        $query = 'SELECT * FROM book_description WHERE book_id = "'.dbQuote($id).'"';
+        $query = 'SELECT * FROM book_description WHERE book_id = "' . dbQuote($id) . '"';
         $result = dbQueryGetResult($query);
         return empty($result);
     }
@@ -346,21 +297,17 @@
     {
         if (!isBookDescriptionEmpty($bookInfo['bookId'])) {
             $query = 'UPDATE book_description SET 
-                        description = "'. dbQuote($bookInfo['book_description']) .'"
-                      WHERE book_id = "'. dbQuote($bookInfo['bookId']) .'"
-              ';
+                        description = "' . dbQuote($bookInfo['book_description']) . '"
+                      WHERE book_id = "' . dbQuote($bookInfo['bookId']) . '"';
             return dbQuery($query);
         }
-        if (addBookDescription($bookInfo['bookId'], $bookInfo['book_description'])) {
-            return true;
-        }
+        return (addBookDescription($bookInfo['bookId'], $bookInfo['book_description']));
         
-        return false;
     }
     
     function isBookLinkEmpty($id)
     {
-        $query = 'SELECT * FROM book_links WHERE book_id = "'.dbQuote($id).'"';
+        $query = 'SELECT * FROM book_links WHERE book_id = "' . dbQuote($id) . '"';
         $result = dbQueryGetResult($query);
         return empty($result);
     }
@@ -369,33 +316,28 @@
     {
         if (!isBookLinkEmpty($bookInfo['bookId'])) {
             $query = 'UPDATE book_links SET 
-                        link = "'. dbQuote($bookInfo['link']) .'"
-                      WHERE book_id = "'. dbQuote($bookInfo['bookId']) .'"
-              ';
+                        link = "' . dbQuote($bookInfo['link']) . '"
+                      WHERE book_id = "' . dbQuote($bookInfo['bookId']) . '"';
             return dbQuery($query);
         }
-        if (addBookLink($bookInfo['bookId'], $bookInfo['link'])) {
-            return true;
-        } 
-        return false;
+        return (addBookLink($bookInfo['bookId'], $bookInfo['link']));
     }
     
     
     function updateBookCover($bookInfo)
     {   
-        //если не приложили новую обложку и не нужно удалять обложку
         if ((!$bookInfo['path']) && !$bookInfo['deleteCover']) {
             return true;
         }
         
         
-        $image = (($bookInfo['deleteCover'])) ? "NULL" : ('"'. dbQuote($bookInfo['path']) . '"');
+        $image = (($bookInfo['deleteCover'])) ? "NULL" : ('"' . dbQuote($bookInfo['path']) . '"');
         
         $query = 'UPDATE books 
                   SET 
-                      image = '. $image . '
+                      image = ' . $image . '
                   WHERE
-                    id = "'. dbQuote($bookInfo['bookId']).'" ';
+                    id = "' . dbQuote($bookInfo['bookId']) . '" ';
                     
         return dbQuery($query);
     }
@@ -410,29 +352,29 @@
                   INNER JOIN
                     Books as B ON L.book_id = B.id
                   WHERE
-                    L.user_id = "'. dbQuote($userId) .'"
+                    L.user_id = "' . dbQuote($userId) . '"
                     AND
                     L.actual = 1
                   ORDER BY
                     L.date DESC
-                  LIMIT '. dbQuote($limit) .'
+                  LIMIT ' . dbQuote($limit) . '
                   ';
         return dbQueryGetResult($query);
     }
     
     function getAllLikedBooks($userId, $page)
     {
-       $start = ($page - 1) * LIMIT_ON_PAGE;
+        $start = ($page - 1) * LIMIT_ON_PAGE;
         $query = "
-              select books.id, books.name, books.year,  publishing_houses.house_name,
+              SELECT books.id, books.name, books.year,  publishing_houses.house_name,
                 IFNULL(books.image, 'img/book_cover/no_cover.png') as image,
                 IFNULL(res.likeResCount, 0) as likeCount,
                 IFNULL(commentRes.commentResCount, 0) as commentCount
-              from books 
-              left join 
+              FROM books 
+              LEFT JOIN 
                 publishing_houses 
                   on books.publishing_house_id = publishing_houses.id
-              left join 
+              LEFT JOIN 
                 (
                   SELECT COUNT(likes.book_id) as likeResCount, books.id  as book_id
                     FROM likes 
@@ -441,7 +383,7 @@
                     WHERE likes.actual = 1 
                     group BY books.id 
                 ) AS res on res.book_id = books.id
-              left join
+              LEFT JOIN
                 (
                   SELECT COUNT(comments.book_id) as commentResCount, books.id as book_id
                   FROM 
@@ -455,10 +397,10 @@
               INNER JOIN
                 likes as L on books.id = L.book_id
               WHERE 
-                L.user_id = '". dbQuote($userId) ."'
+                L.user_id = '" . dbQuote($userId) . "'
                 AND
                 L.actual = 1
-              LIMIT ".dbQuote($start) .", ". dbQuote(LIMIT_ON_PAGE);
+              LIMIT " . dbQuote($start) . ", " . dbQuote(LIMIT_ON_PAGE);
 
         return dbQueryGetResult($query);
     }
@@ -472,13 +414,11 @@
                   INNER JOIN
                     likes as L on B.id = L.book_id
                   WHERE
-                    L.user_id = "'. dbQuote($userId) .'"
+                    L.user_id = "' . dbQuote($userId) . '"
                     AND
-                    L.actual = 1
-                  ';
+                    L.actual = 1';
         $result = dbQueryGetResult($query);
         if (!empty($result)) {
             return $result[0]["Count"];
         }
-        return false;
     }

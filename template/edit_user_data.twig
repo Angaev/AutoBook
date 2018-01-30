@@ -22,18 +22,21 @@
               <input class="form-control" id="userEmail" 
               value="{{ user["email"] }}" name="email" autocomplete="off">
 
-              <label for="userOldPass">Старый пароль</label>
+              <label for="userOldPass">Пароль для подтверждения</label>
               <input type="password" class="form-control" id="userOldPass" 
               value="" name="oldPass" placeholder="Обязательно" required>
               
-              <label for="userNewPass1">Новый пароль</label>
-              <input type="password" class="form-control" id="userNewPass1" 
-              value="" name="pass1" placeholder="Запонить, если нужно обновить">
-              
-              <label for="userNewPass2">Повторите новый пароль</label>
-              <input type="password" class="form-control" id="userNewPass2" 
-              value="" name="pass2">
-              
+              <label for="userNewPass1">Смена пароля</label>
+              <div class="row">
+                <div class="col-md-6">
+                  <input type="password" class="form-control" id="userNewPass1" 
+                  value="" name="pass1" placeholder="Запонить, если нужно обновить">
+                </div>
+                <div class="col-md-6">
+                  <input type="password" class="form-control" id="userNewPass2" 
+                  value="" name="pass2" placeholder="Повторите, чтобы не ошибиться">
+                </div>
+              </div>
               <label>Ваша фотография</label>
               <input type="file" class="form-control" accept="image/*,image/jpeg" name="avatar"/>
               <div>

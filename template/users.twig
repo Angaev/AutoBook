@@ -7,6 +7,13 @@
 {% block content %}
   {% include 'message.twig' %}
   <div class="row">
+    <div class="col-md-6 text-left">
+        <h3>
+          Все пользователи
+        </h3>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-12">
       <table class="table table-bordered table-hover">
         <thead>
@@ -23,21 +30,42 @@
             <tr>
               <td>{{ user.name }}</td>
               <td>{{ user.subname }}</td>
-              <td>
-                <a href="mailto:{{ user.email }}">
-                    {{ user.email }}
-                </a>
+              <td>               
+                  {{ user.email }}                
               </td>
               <td>
-                <a href="actions/set_right.php?id={{ user.id }}" class="text-info"  
-                  title="{% if user.rights == "user" %}Одно нажатие - он админ{% else %}Нажмите чтобы разжалобить{% endif %}">
-                  {% if user.rights == "user" %}Пользователь{% else %}Администратор{% endif %}
-                </a>
+                <div class="btn-group">
+                  <a type="button" data-toggle="dropdown" class="btn btn-link btn-sm dropdown-toggle">
+                    {% if user.rights == "user" %}Пользователь{% else %}Администратор{% endif %} 
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a href="actions/set_right.php?id={{ user.id }}">
+                        Сделать 
+                        {% if user.rights == "user" %}администратором{% else %}пользователем{% endif %} 
+                      </a>
+                    </li>
+                  </ul>
+                </div> 
               </td>
               <td>
-                <a href="actions/ban.php?id={{ user.id }}" class="text-info">
-                  {% if user.ban %}Разбанить{% else %}Забанить{% endif %}
-                </a>
+                
+                <div class="btn-group">
+                  <a type="button" data-toggle="dropdown" class="btn btn-link btn-sm dropdown-toggle">
+                    {% if user.ban %}Бан{% else %}Нет запрета{% endif %}
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a href="actions/ban.php?id={{ user.id }}">
+                        {% if user.ban %}Разбанить{% else %}Забанить{% endif %} 
+                      </a>
+                    </li>
+                  </ul>
+                </div>                 
+                
+                
               </td>
             </tr>
           {% endfor %}

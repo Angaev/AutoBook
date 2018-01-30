@@ -1,4 +1,5 @@
 <?php
+//Здесь обкатываются функции
 require_once('include/common.inc.php');
 
 

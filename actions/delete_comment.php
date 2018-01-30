@@ -5,7 +5,7 @@
     } 
       
     if (deleteComment($_POST['commentId'])) {
-       redirect('/book.php?result=4&book_id='. $_POST['bookId']);
+       redirect('/book.php?result=4&book_id=' . $_POST['bookId']);
     } else {
-       redirect('/book.php?result=2&book_id='. $_POST['bookId']);
+       redirect('/book.php?result=2&book_id=' . $_POST['bookId']);
     }

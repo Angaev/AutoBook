@@ -6,8 +6,8 @@
     }
     
     if (!isset($_POST['name']) || !isset($_POST['subname']) || 
-        !isset($_POST['email']) || !isset($_POST['pass1']) || 
-        !isset($_POST['pass2']) || !isset($_POST['oldPass'])) {
+    !isset($_POST['email']) || !isset($_POST['pass1']) || 
+    !isset($_POST['pass2']) || !isset($_POST['oldPass'])) {
         redirect('/index.php');
     } 
     

@@ -41,12 +41,13 @@
                 </label>
               </div>
               
-              <button type="submit" class="btn btn-success small_buttons_book">Обновить</button>
+              <button type="submit" class="btn btn-success">Обновить</button>
+              <form action="actions/delete_book.php" method="post">
+                <input value = "{{ bookId }}" type="hidden" name="delId">
+                <button type="submit" class="btn btn-link">Удалить книгу</button>
+              </form>
             </form>
-            <form action="actions/delete_book.php" method="post">
-              <input value = "{{ bookId }}" type="hidden" name="delId">
-              <button type="submit" class="btn btn-link">Удалить книгу</button>
-            </form>
+
         </div>
       </div>
 {% endblock %}

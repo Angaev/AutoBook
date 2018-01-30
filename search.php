@@ -1,13 +1,11 @@
 <?php
     require_once('include/common.inc.php');
 
-    $message = NULL;
-    if (!empty($_GET['result'])) {
-        $result  = $_GET['result'];
-        if ($result == 1) {
-            $message = 'Запрос обработан';
-        }
-    }
+    $messages = [
+      1 => "Запрос обработан"
+    ];
+    $messageId = isset($_GET["result"]) ? intval($_GET["result"]) : 0;
+    $message = isset($messages[$messageId]) ? $messages[$messageId] : "";
     
     if (empty($_GET['name'])) {
         redirect('index.php');  
@@ -34,9 +32,7 @@
         'pageName' => $_SERVER['SCRIPT_NAME'],
         'pointer' => getPointerState($page, $lastPage),
         'lastPage' => $lastPage,  
-          
         'message' => $message,
         'pageDescription' => 'Книги по запросу: ' . $name
-        );
-    // var_dump($vars["pointer"]);
+    );
     echo getView('index.twig', $vars);

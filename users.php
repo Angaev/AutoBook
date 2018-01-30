@@ -1,15 +1,12 @@
 <?php
     require_once('include/common.inc.php');
-    $message = NULL;
-    
-    if (!empty($_GET['result'])) {
-        if ($_GET['result'] == 1) {
-            $message = 'Выполнено';
-        }
-        if ($_GET['result'] == 2) {
-            $message = 'Не удалось';
-        }
-    }
+
+    $messages = [
+      1 => "Выполнено",
+      2 => "Не удалось выполнить",
+    ];
+    $messageId = isset($_GET["result"]) ? intval($_GET["result"]) : 0;
+    $message = isset($messages[$messageId]) ? $messages[$messageId] : "";
     
     if (!isAdmin()) {
         redirect('index.php');
@@ -20,5 +17,5 @@
         'titleText' => 'Редактирование пользователей',
         'message' => $message,
         'users' => getUsersData()
-        );
+    );
     echo getView('users.twig', $vars);

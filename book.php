@@ -1,21 +1,15 @@
 <?php
     require_once('include/common.inc.php');
-    $message = NULL;
     
-    if (!empty($_GET['result'])) {
-        if ($_GET['result'] == 1) {
-            $message = 'Книга переименована';
-        }
-        if ($_GET['result'] == 2) {
-            $message = 'Изменения не внесены, проверьте данные';
-        }
-        if ($_GET['result'] == 3) {
-            $message = 'Книга обнолена';
-        }
-        if ($_GET['result'] == 4) {
-            $message = 'Комментарий удален';
-        }
-    }
+    $messages = [
+      1 => "Книга переименована",
+      2 => "Изменения не внесены, проверьте данные",
+      3 => "Книга обновлена",
+      4 => "Комментарий удален"
+    ];
+    $messageId = isset($_GET["result"]) ? intval($_GET["result"]) : 0;
+    $message = isset($messages[$messageId]) ? $messages[$messageId] : "";
+ 
     if (empty($_GET['book_id'])) {
        redirect('index.php');
     }
@@ -27,12 +21,8 @@
     }
     
     if (isUserLogin()) {
-      if (isUserAlreadyLikeBook($userId, $id)) {
-          if (isActualLike($userId, $id)) {
-              $likeBtn = 'lock';
-          } else {
-              $likeBtn ='free';
-          }
+      if ((isUserAlreadyLikeBook($userId, $id)) && (isActualLike($userId, $id))) {
+          $likeBtn = 'lock';
       } else {
           $likeBtn ='free';
       }

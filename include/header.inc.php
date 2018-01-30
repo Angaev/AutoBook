@@ -7,7 +7,7 @@
                     "name" => "Вход",
                     "url" => "login.php" 
                   );
-        $query = 'select * from header_links order by id';
+        $query = 'SELECT * FROM header_links ORDER BY id';
         $result = dbQueryGetResult($query);
         if (isUserLogin()) {          
             return $result;

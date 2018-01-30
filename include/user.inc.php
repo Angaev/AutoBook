@@ -2,7 +2,7 @@
 
     function isUserExistByEmail($email)
     {
-        $query = 'select * from users where email =' . dbQuote($email);
+        $query = 'SELECT * FROM users WHERE email =' . dbQuote($email);
         return dbQuery($query);
     }
     
@@ -10,8 +10,8 @@
     function createUser($email, $passHash, $name, $subname)
     { 
         $query = "INSERT INTO users (email, passHash, Name, Subname) 
-                  VALUES('". dbQuote($email) ."', '". dbQuote($passHash) ."', 
-                  '". dbQuote($name) ."', '". dbQuote($subname)."')";
+                  VALUES('" . dbQuote($email) . "', '" . dbQuote($passHash) . "', 
+                  '" . dbQuote($name) . "', '" . dbQuote($subname) . "')";
         return dbQuery($query);
     }
     
@@ -21,18 +21,13 @@
         return dbQuery($query);
     }
     
-    function changePass($id, $passHash)
-    {
-        
-    }
-    
     function isCorrectPass($id, $pass)
     {
         $query = 'SELECT passHash as hash
                  FROM
                     users
                  WHERE
-                    id = "'. dbQuote($id) .'"';
+                    id = "' . dbQuote($id) . '"';
         $hash = dbQueryGetResult($query);
 
         if ((md5($pass)) == $hash[0]['hash']) {
@@ -44,7 +39,7 @@
     {
         $userInfo = [];
         $query = "SELECT id from users u 
-                  WHERE u.email = '". dbQuote($login) . "' and u.passHash = '". dbQuote(md5($pass)) ."'";
+                  WHERE u.email = '" . dbQuote($login) . "' and u.passHash = '" . dbQuote(md5($pass)) . "'";
         $result = dbQueryGetResult($query);
         if(!empty($result)) {
             $userInfo = $result[0];
@@ -74,8 +69,8 @@
         $userId = $_SESSION['user_id'];
         $query = 'SELECT rights FROM users WHERE id = ' . $userId;
         $result = dbQueryGetResult($query);
-        if ($result[0]["rights"] == "admin") {
-            return true;
+        if (!empty($result)) {
+            return ($result[0]["rights"] == "admin");
         }
     }
     
@@ -94,16 +89,12 @@
     function isUserBan($id)
     {
         $query = 'SELECT ban FROM users 
-                  WHERE id = "' .dbQuote($id) .'"';
+                  WHERE id = "' . dbQuote($id) . '"';
         $result = dbQueryGetResult($query);
         if (empty($result )) {
             return false;
         }
-        if ($result[0]['ban'] == '1') {
-            return true;
-        } else {
-            return false;
-        }
+        return ($result[0]['ban'] == '1');
     }
     
     function flipBan($id)
@@ -111,11 +102,11 @@
         if (isUserBan($id)) { 
             $query = 'UPDATE users 
                       SET ban = "0" 
-                      WHERE id = "'. dbQuote($id) .'"';
+                      WHERE id = "' . dbQuote($id) . '"';
         } else {
             $query = 'UPDATE users 
                       SET ban = "1" 
-                      WHERE id = "'. dbQuote($id) .'"';
+                      WHERE id = "' . dbQuote($id) . '"';
         }
         
         return dbQuery($query);
@@ -123,7 +114,7 @@
     
     function getUserRight($id){
         $query = 'SELECT rights FROM users 
-                  WHERE id = '. dbQuote($id);
+                  WHERE id = ' . dbQuote($id);
         $result = dbQueryGetResult($query);
         if (empty($result)) {
             return 'noUser';
@@ -140,11 +131,11 @@
         if (getUserRight($id) == 'user') { 
             $query = 'UPDATE users 
                       SET rights = "admin" 
-                      WHERE id = "'. dbQuote($id) .'"';
+                      WHERE id = "' . dbQuote($id) . '"';
         } elseif (getUserRight($id) == 'admin') {
             $query = 'UPDATE users 
                       SET rights = "user" 
-                      WHERE id = "'. dbQuote($id) .'"';
+                      WHERE id = "' . dbQuote($id) . '"';
         } else {
             return false;
         }
@@ -155,20 +146,22 @@
     {
         $query = 'SELECT email, Name, Subname, img
                   FROM users
-                  WHERE id = '. $id .'
+                  WHERE id = ' . dbQuote($id) . '
                   ';
         $result = dbQueryGetResult($query);
-        return $result[0];
+        if (!empty($result)) {
+            return $result[0];
+        }
     }
     
     function updateUserName($userData) 
     {
         $query = 'UPDATE users
                   SET 
-                      Name = "'. dbQuote($userData['name']) .'",
-                      Subname = "'. dbQuote($userData['subname']) .'"
+                      Name = "' . dbQuote($userData['name']) . '",
+                      Subname = "' . dbQuote($userData['subname']) . '"
                   WHERE 
-                      id = "'. dbQuote($userData['id']) .'"';
+                      id = "' . dbQuote($userData['id']) . '"';
         return dbQuery($query);
     }
     
@@ -177,12 +170,10 @@
         if (!empty($userData['pass'])) {
             $query = 'UPDATE users
                       SET 
-                          passHash = "'. dbQuote(md5($userData['pass'])) .'"
+                          passHash = "' . dbQuote(md5($userData['pass'])) . '"
                       WHERE 
-                          id = "'. dbQuote($userData['id']) .'"';
+                          id = "' . dbQuote($userData['id']) . '"';
             return dbQuery($query);
-        } else {
-            return true;
         }
     }
     
@@ -192,13 +183,13 @@
             return true;
         }
         
-        $image = (($userData['deleteAvatar'])) ? "NULL" : ('"'. dbQuote($userData['path']) . '"');
+        $image = (($userData['deleteAvatar'])) ? "NULL" : ('"' . dbQuote($userData['path']) . '"');
 
         $query = 'UPDATE users
                   SET
-                      img = '. $image . '
+                      img = ' . $image . '
                   WHERE
-                      id = "'. dbQuote($userData['id']) .'"';
+                      id = "' . dbQuote($userData['id']) . '"';
                       
         return dbQuery($query);
     }
@@ -216,7 +207,7 @@
                       Name, Subname, img
                   FROM users
                   WHERE
-                      id = "'. dbQuote($id) .'"
+                      id = "' . dbQuote($id) . '"
                   ';
         $result = dbQueryGetResult($query);
         return($result[0]);

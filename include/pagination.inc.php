@@ -13,7 +13,7 @@
         if (($currentPage == 1) && ($currentPage == $lastPage)) {
             $pointer = 'offAll';
         }
-        
+
         return $pointer;
     }
     

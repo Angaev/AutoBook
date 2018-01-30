@@ -7,25 +7,19 @@
     
     $id = $_SESSION['user_id'];
     
-   
-    $message = null;
-    if (!empty($_GET["result"])) {
-        if($_GET["result"] == 1) {
-            //удалось обновить 
-            $message = "Запрос обработан";
-        }
-        elseif ($_GET["result"] == 2) {
-            //не удалось обновить
-            $message = "Запрос не обработан, проверьте вводимые данные";
-        }
-    }
-    
+    $messages = [
+      1 => "Запрос обработан",
+      2 => "Запрос не обработан, проверьте вводимые данные"
+    ];
+    $messageId = isset($_GET["result"]) ? intval($_GET["result"]) : 0;
+    $message = isset($messages[$messageId]) ? $messages[$messageId] : "";
+     
     $vars = array(
-      'activeMenu' => '2', 
-      'headerData' => loadHeaderLinks(),
-      'titleText' => 'Редактирование ваших данных',
-      'user' => loadUserData($id),
-      'message' => $message,
-      'publishing_houses' => loadAllPublishingHouses()
+        'activeMenu' => '2', 
+        'headerData' => loadHeaderLinks(),
+        'titleText' => 'Редактирование ваших данных',
+        'user' => loadUserData($id),
+        'message' => $message,
+        'publishing_houses' => loadAllPublishingHouses()
       );
     echo getView('edit_user_data.twig', $vars);

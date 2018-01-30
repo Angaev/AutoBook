@@ -4,13 +4,13 @@
 
 .book_cover
 {
-  width: 250px;
+  width: 200px;
 }
 
 .book_block
 {
-  padding: 30px;
-  height: 550px;
+  padding: 15px;
+  height: 445px;
 }
 
 .book_block:hover
@@ -71,7 +71,7 @@
 
 .buttons_book
 {
-  margin-top: 50px;
+  margin-top: 10px;
 }
 
 .small_buttons_book
@@ -81,7 +81,7 @@
 
 .book_image_text_block
 {
-  height: 445px;
+  height: 350px;
   overflow: hidden;
 }
 
@@ -115,6 +115,7 @@
 {
   margin-bottom: 10px;
   margin-left: 120px;
+  min-height: 50px;
 }
 
 .avatar
@@ -132,6 +133,27 @@
 .no_horizontal_scroll 
 {
   overflow-x: hidden;
+}
+
+.data_text
+{
+  font-size: 14px;
+}
+
+.book_mini_description
+{
+  color: gray;
+  margin-top: 10px;
+}
+
+.book_mini_cover
+{
+  padding: 7px;
+}
+
+.area_button
+{
+  margin-top: 40px;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) 

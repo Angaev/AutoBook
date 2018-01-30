@@ -6,11 +6,12 @@
         $query = '
                   SELECT COUNT(*) as CNT FROM comments
                   WHERE
-                    book_id = "'. dbQuote($bookId) .'"
+                    book_id = "' . dbQuote($bookId) . '"
                   ';
         $result = dbQueryGetResult($query);
-        return($result[0] ["CNT"]);
-        
+        if (!empty($result)) {
+            return($result[0] ["CNT"]);
+        }
     }
     
     function getCommentsBook($book_id)
@@ -22,7 +23,7 @@
                   INNER JOIN
                     users as U ON C.user_id = U.id
                   WHERE
-                    C.book_id = "'. dbQuote($book_id) .'" AND C.actual = 1
+                    C.book_id = "' . dbQuote($book_id) . '" AND C.actual = 1
                   ';
         return dbQueryGetResult($query);
     }
@@ -31,7 +32,7 @@
     {
         $query = '
                   INSERT INTO comments (user_id, book_id, comment)
-                    VALUES ("'. dbQuote($userId) .'", "'. dbQuote($bookId).'", "'. dbQuote($comment).'")';
+                  VALUES ("' . dbQuote($userId) . '", "' . dbQuote($bookId) . '", "' . dbQuote($comment) . '")';
         return dbQuery($query);
     }
     
@@ -40,7 +41,7 @@
         $query = '
                   DELETE FROM comments
                   WHERE
-                    id = '. dbQuote($id);
+                    id = ' . dbQuote($id);
         return dbQuery($query);
     }
     
@@ -53,7 +54,7 @@
                   INNER JOIN
                     books as B ON C.book_id = B.id
                   WHERE
-                    C.user_id = "'. dbQuote($userId).'"
+                    C.user_id = "' . dbQuote($userId) . '"
                     AND
                     c.actual = 1
                   ORDER BY
@@ -64,7 +65,6 @@
         if (!empty($result)) {
           return $result[0];
         }
-        return false;
     }
     
     function getAllComment($userId)
@@ -76,7 +76,7 @@
                   INNER JOIN
                     books as B ON C.book_id = B.id
                   WHERE
-                    C.user_id = "'. dbQuote($userId).'"
+                    C.user_id = "' . dbQuote($userId) . '"
                     AND
                     c.actual = 1
                   ORDER BY
@@ -86,5 +86,4 @@
         if (!empty($result)) {
           return $result;
         }
-        return false;
     }

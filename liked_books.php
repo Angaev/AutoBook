@@ -22,12 +22,9 @@
         'books' => getAllLikedBooks($_SESSION['user_id'], $page),
         'message' => $message,
         'pageDescription' => 'Книги, которые Вам понравились',
-        //для пагинации
         'pageList' => getPageList($page, $lastPage),
         'pageName' => $_SERVER['SCRIPT_NAME'],
         'pointer' => getPointerState($page, $lastPage),
         'lastPage' => $lastPage
-        );
-    // var_dump($vars);
-    // die();
+    );
     echo getView('index.twig', $vars);

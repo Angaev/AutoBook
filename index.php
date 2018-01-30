@@ -1,24 +1,16 @@
 <?php
     require_once('include/common.inc.php');
 
-    $message = NULL;
-    if (!empty($_GET['result'])) {
-        if ($_GET['result'] == 1) {
-            $message = 'Обложка добавлена';
-        } 
-        if ($_GET['result'] == 2) {
-            $message = 'Книга не удалена';
-        } 
-        if ($_GET['result'] == 3) {
-            $message = 'Книга удалена';
-        } 
-        if ($_GET['result'] == 4) {
-            $message = 'Книга добавлена';
-        } 
-        if ($_GET['result'] == 0) {
-            $message = 'Что-то пошло не так';
-        } 
-    }
+    $messages = [
+      1 => "Обложка добавлена",
+      2 => "Книга не удалена",
+      3 => "Книга удалена",
+      4 => "Книга добавлена",
+      0 => "Что-то пошло не так"
+    ];
+    $messageId = isset($_GET["result"]) ? intval($_GET["result"]) : 0;
+    $message = isset($messages[$messageId]) ? $messages[$messageId] : "";
+     
     if (empty($_GET['page'])) {
         $page = 1;
     } else {
@@ -36,5 +28,5 @@
         'pointer' => getPointerState($page, $lastPage),
         'lastPage' => $lastPage,
         'message' => $message
-        );
+    );
     echo getView('index.twig', $vars);

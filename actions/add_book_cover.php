@@ -5,12 +5,10 @@
     }
     
     $book_id = $_POST['book_id'];
-    //$uploaddir = '../img/book_cover/';
     
     
     //получаем путь куда и какой файл перенести из tmp
     $path = saveFile(COVER_DIR, 'cover', $book_id);
-    //если не сохранился файл
     if (!$path) {
         redirect('/new_book_cover.php?result=2&id=' . $book_id);
     }

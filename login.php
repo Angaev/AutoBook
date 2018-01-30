@@ -1,35 +1,23 @@
 <?php
     require_once('include/common.inc.php');
-    $message = null;
+    
     if (isUserLogin()) {
         redirect('index.php');
     }
-    if (!empty($_GET["result"])) {
-        if($_GET["result"] == 1) {
-            //удалось добавить 
-            $message = "Вы зарегистированы";
-        }
-        elseif ($_GET["result"] == 2) {
-            //не удалось зарегистрировать
-            $message = "В регистрации отказано, попробуйте другие данные";
-        }
-        elseif ($_GET["result"] == 3) {
-            //не тот почта/пароль
-            $message = "Неверная пара email/пароль";
-        }
-        elseif ($_GET["result"] == 4) {
-            //такой емаил уже есть
-            $message = "Такая почта уже зарегистирована";
-        }
-        elseif ($_GET["result"] == 5) {
-            //Пользователь забанен
-            $message = "Учетная запись заблокирована";
-        }
-        
-    }
+    
+    $messages = [
+      1 => "Вы зарегистированы",
+      2 => "В регистрации отказано, попробуйте другие данные",
+      3 => "Неверная пара email/пароль",
+      4 => "Такая почта уже зарегистирована",
+      5 => "Учетная запись заблокирована"
+    ];
+    $messageId = isset($_GET["result"]) ? intval($_GET["result"]) : 0;
+    $message = isset($messages[$messageId]) ? $messages[$messageId] : "";
+
     
     $vars = array(
-      'activeMenu' => '2', 
+      'activeMenu' => '4', 
       'headerData' => loadHeaderLinks(),
       'titleText' => 'Войти/Зарегистироваться',
       'message' => $message    
