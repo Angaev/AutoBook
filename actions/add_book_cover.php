@@ -1,4 +1,5 @@
 <?php
+    //Этот скрипт добавляет указанное изображение к указанной книге
     require_once('../include/common.inc.php');
     if (empty($_POST['book_id'])) {
         redirect('/index.php');
