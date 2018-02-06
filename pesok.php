@@ -78,5 +78,6 @@ $pass = 'password';
 $name = 'acura';
 $book_id = 2;
 $commentId = 8;
+$page = 1;
 //echo (getCountCommentsBook($book_id));
-var_dump(deleteComment($commentId));
+var_dump(loadDataBooks($page));

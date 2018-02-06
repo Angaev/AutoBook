@@ -6,9 +6,12 @@
       2 => "Книга не удалена",
       3 => "Книга удалена",
       4 => "Книга добавлена",
-      0 => "Что-то пошло не так"
+      'add_cover' => "Обложка добавлена",
+      'not_delete_book' => "Книга не удалена",
+      'delete_book' => "Книга удалена",
+      'add_cover' => "Книга добавлена"
     ];
-    $messageId = isset($_GET["result"]) ? intval($_GET["result"]) : 0;
+    $messageId = isset($_GET["result"]) ? ($_GET["result"]) : 0;
     $message = isset($messages[$messageId]) ? $messages[$messageId] : "";
      
     if (empty($_GET['page'])) {

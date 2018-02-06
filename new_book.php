@@ -1,7 +1,7 @@
 <?php
     require_once('include/common.inc.php');
     if (!isUserLogin()) {
-        redirect('index.php');
+        redirect('/index.php');
     }
     
     $messages = [

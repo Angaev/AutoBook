@@ -1,18 +1,15 @@
 <?php
     require_once('include/common.inc.php');
 
-    $message = NULL;
-    if (!empty($_GET['result'])) {
-        if ($_GET['result'] == 1) {
-            $message = 'Изменения внесены';
-        } 
-        if ($_GET['result'] == 2) {
-            $message = 'Изменения не внесены';
-        } 
-    }
+    $messages = [
+      1 => "Изменения внесены",
+      2 => "Изменения не внесены"
+    ];
+    $messageId = isset($_GET["result"]) ? intval($_GET["result"]) : 0;
+    $message = isset($messages[$messageId]) ? $messages[$messageId] : ""; 
       
     if (!isUserLogin()) {
-        redirect('login.php');
+        redirect('/login.php');
     }
     $userId = $_SESSION['user_id'];
       

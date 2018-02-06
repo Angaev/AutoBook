@@ -6,8 +6,6 @@
     
     $book_id = $_POST['book_id'];
     
-    
-    //получаем путь куда и какой файл перенести из tmp
     $path = saveFile(COVER_DIR, 'cover', $book_id);
     if (!$path) {
         redirect('/new_book_cover.php?result=2&id=' . $book_id);

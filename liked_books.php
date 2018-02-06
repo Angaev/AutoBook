@@ -9,7 +9,7 @@
     }
 
     if (!isUserLogin()) {
-        redirect('index.php');
+        redirect('/index.php');
     }
     
     $bookCount = getCountLikedBooks($_SESSION['user_id']);

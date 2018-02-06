@@ -9,7 +9,7 @@
     $message = isset($messages[$messageId]) ? $messages[$messageId] : "";
  
     if (!isUserLogin()) {
-        redirect('login.php');
+        redirect('/login.php');
     }
     $userId = $_SESSION['user_id'];
       

@@ -2,7 +2,7 @@
     require_once('include/common.inc.php');
     
     if (isUserLogin()) {
-        redirect('index.php');
+        redirect('/index.php');
     }
     
     $messages = [
@@ -15,7 +15,6 @@
     $messageId = isset($_GET["result"]) ? intval($_GET["result"]) : 0;
     $message = isset($messages[$messageId]) ? $messages[$messageId] : "";
 
-    
     $vars = array(
       'activeMenu' => '4', 
       'headerData' => loadHeaderLinks(),

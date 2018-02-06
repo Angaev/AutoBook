@@ -11,7 +11,7 @@
     $message = isset($messages[$messageId]) ? $messages[$messageId] : "";
  
     if (empty($_GET['book_id'])) {
-       redirect('index.php');
+       redirect('/index.php');
     }
     $id = $_GET['book_id'];
     if (!isset($_SESSION['user_id'])) {

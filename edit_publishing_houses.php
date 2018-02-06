@@ -1,6 +1,10 @@
 <?php
     require_once('include/common.inc.php');
 
+    if (!isAdmin()) {
+        redirect('/login.php');
+    }
+    
     $messages = [
       1 => "Запрос обработан",
       2 => "Запрос не обработан, проверьте вводимые данные"

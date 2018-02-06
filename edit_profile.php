@@ -2,7 +2,7 @@
     require_once('include/common.inc.php');
     
     if (!isUserLogin()) {
-        redirect('index.php');
+        redirect('/index.php');
     }
     
     $id = $_SESSION['user_id'];

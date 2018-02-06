@@ -9,7 +9,7 @@
     $message = isset($messages[$messageId]) ? $messages[$messageId] : "";
     
     if (!isAdmin()) {
-        redirect('index.php');
+        redirect('/index.php');
     }
    
     $vars = array(
