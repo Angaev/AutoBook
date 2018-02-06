@@ -1,7 +1,7 @@
 <?php
     require_once('../include/common.inc.php');
     
-    if (empty($_POST['email']) || empty($_POST['pass1']) || empty($_POST['pass1']) || empty($_POST['name']) || empty($_POST['subname'])) {
+    if (!isDataNewUserExist()) {
         redirect('/login.php?result=2');
     }
 

@@ -212,3 +212,15 @@
         $result = dbQueryGetResult($query);
         return($result[0]);
     }
+    
+    function isDataNewUserExist() 
+    {
+        return (!empty($_POST['email']) || !empty($_POST['pass1']) 
+                  || !empty($_POST['pass2']) || !empty($_POST['name']) 
+                      || !empty($_POST['subname'])); 
+    }
+    
+    function isUpdateUserDataExist()
+    {
+        return (isDataNewUserExist() AND empty($_POST['oldPass']));
+    }
