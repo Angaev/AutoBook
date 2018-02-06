@@ -1,4 +1,5 @@
 <?php
+    //добавлет новую книгу в БД
     require_once('../include/common.inc.php');
     
     if (empty($_POST['book_name'])) {
