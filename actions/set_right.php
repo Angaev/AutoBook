@@ -11,7 +11,7 @@
     $id = $_GET['id'];
     
     if (flipRight($id)) {
-        redirect('/users.php?result=1');
+        redirect('/users.php?result=ok');
     } else {
-        redirect('/users.php?result=2');
+        redirect('/users.php?result=fail');
     }

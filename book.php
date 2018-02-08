@@ -2,12 +2,12 @@
     require_once('include/common.inc.php');
     
     $messages = [
-      1 => "Книга переименована",
-      2 => "Изменения не внесены, проверьте данные",
-      3 => "Книга обновлена",
-      4 => "Комментарий удален"
+        'ok' => 'Книга переименована',
+        'fail' => 'Изменения не внесены, проверьте данные',
+        'book_add' => 'Книга обновлена',
+        'del_comment' => 'Комментарий удален'
     ];
-    $messageId = isset($_GET["result"]) ? intval($_GET["result"]) : 0;
+    $messageId = isset($_GET["result"]) ? ($_GET["result"]) : 0;
     $message = isset($messages[$messageId]) ? $messages[$messageId] : "";
  
     if (empty($_GET['book_id'])) {

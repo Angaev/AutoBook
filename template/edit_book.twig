@@ -42,10 +42,10 @@
               </div>
               
               <button type="submit" class="btn btn-success">Обновить</button>
-              <form action="actions/delete_book.php" method="post">
-                <input value = "{{ bookId }}" type="hidden" name="delId">
-                <button type="submit" class="btn btn-link">Удалить книгу</button>
-              </form>
+              
+              <a href="actions/delete_book.php?delId={{ bookId }}" type="submit" class="btn btn-link">      
+                Удалить книгу
+              </a>
             </form>
 
         </div>

@@ -10,12 +10,12 @@
     } 
     
     if (!isCorrectPass($_SESSION["user_id"], $_POST['oldPass'])) {
-        redirect('/edit_profile.php?result=2');
+        redirect('/edit_profile.php?result=fail');
     }
   
   
     if ($_POST['pass1'] != $_POST['pass2']) {
-        redirect('/edit_profile.php?result=2');
+        redirect('/edit_profile.php?result=fail');
     }
   
     $userData['name'] = $_POST['name'];
@@ -32,9 +32,9 @@
     $userData['path'] = saveFile(AVATAR_DIR, 'avatar', $_SESSION["user_id"]);
     
     if (updateUserName($userData) && updateUserImg($userData) && updatePassword($userData)) {
-        redirect('/area.php?result=1');
+        redirect('/area.php?result=ok');
     } else {
-        redirect('/edit_profile.php?result=2');
+        redirect('/edit_profile.php?result=fail');
     }
     
 

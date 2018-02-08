@@ -9,10 +9,10 @@
     $id = $_GET['id'];
     
     $messages = [
-      1 => "Запрос обработан",
-      2 => "Запрос не обработан, проверьте вводимые данные"
+        'ok' => "Запрос обработан",
+        'fail' => "Запрос не обработан, проверьте вводимые данные"
     ];
-    $messageId = isset($_GET["result"]) ? intval($_GET["result"]) : 0;
+    $messageId = isset($_GET["result"]) ? ($_GET["result"]) : 0;
     $message = isset($messages[$messageId]) ? $messages[$messageId] : "";
      
     $vars = array(

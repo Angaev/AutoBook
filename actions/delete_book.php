@@ -4,12 +4,12 @@
         redirect('/index.php');
     } 
       
-    if (empty($_POST['delId'])) {
-        redirect('/index.php?result=2');
+    if (empty($_GET['delId'])) {
+        redirect('/index.php?result=not_delete_book');
     }
     
-    if (deleteBook($_POST['delId'])) {
-       redirect('/index.php?result=3');
+    if (deleteBook($_GET['delId'])) {
+       redirect('/index.php?result=delete_book');
     } else {
-       redirect('/index.php?result=2');
+       redirect('/index.php?result=not_delete_book');
     }

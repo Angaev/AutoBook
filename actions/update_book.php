@@ -27,9 +27,9 @@
 
     if (updateBook($bookInfo) && updateBookDescription($bookInfo) 
     && updateBookLink($bookInfo) && updateBookCover($bookInfo)) {
-        redirect('/book.php?book_id=' . $bookInfo['bookId'] . '&result=3');
+        redirect('/book.php?book_id=' . $bookInfo['bookId'] . '&result=book_add');
     } else {
-        redirect('/book.php?book_id=' . $bookInfo['bookId'] . '&result=2');
+        redirect('/book.php?book_id=' . $bookInfo['bookId'] . '&result=fail');
     }
 
    

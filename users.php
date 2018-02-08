@@ -2,10 +2,10 @@
     require_once('include/common.inc.php');
 
     $messages = [
-      1 => "Выполнено",
-      2 => "Не удалось выполнить",
+        'ok' => "Выполнено",
+        'fail' => "Не удалось выполнить"
     ];
-    $messageId = isset($_GET["result"]) ? intval($_GET["result"]) : 0;
+    $messageId = isset($_GET["result"]) ? ($_GET["result"]) : 0;
     $message = isset($messages[$messageId]) ? $messages[$messageId] : "";
     
     if (!isAdmin()) {
