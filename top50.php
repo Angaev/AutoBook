@@ -1,13 +1,14 @@
 <?php
     require_once('include/common.inc.php');
     $message = null;
-    if (!is_numeric($_GET['page'])) {
-        redirect('/index.php');
-    }
+
     
     if (empty($_GET['page'])) {
         $page = 1;
     } else {
+        if (!is_numeric($_GET['page'])) {
+            redirect('/index.php');
+        }
         $page = $_GET['page'];
     }
     
