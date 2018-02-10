@@ -1,8 +1,5 @@
 <?php
 
-    define("ERR_USER_REGISTRATION_FAIL", 1);
-    define("ERR_USER_REGISTRATION_DONE", 2);
-
     function isUserExistByEmail($email)
     {
         $query = 'SELECT * FROM users WHERE email =' . dbQuote($email);
@@ -216,14 +213,14 @@
         return($result[0]);
     }
     
-    function isDataNewUserExist() 
+    function doesDataNewUserExist() 
     {
         return (!empty($_POST['email']) || !empty($_POST['pass1']) 
                   || !empty($_POST['pass2']) || !empty($_POST['name']) 
                       || !empty($_POST['subname'])); 
     }
     
-    function isUpdateUserDataExist()
+    function doesUpdateUserDataExist()
     {
         return (isDataNewUserExist() AND empty($_POST['oldPass']));
     }

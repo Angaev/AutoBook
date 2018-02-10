@@ -1,7 +1,7 @@
 <?php
     require_once('../include/common.inc.php');
     
-    if (!isDataNewUserExist()) {
+    if (!doesDataNewUserExist()) {
         redirect('/login.php?result=reg_fail');
     }
 
