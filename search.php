@@ -7,17 +7,19 @@
     $messageId = isset($_GET["result"]) ? ($_GET["result"]) : 0;
     $message = isset($messages[$messageId]) ? $messages[$messageId] : "";
     
+
     if (empty($_GET['name'])) {
         redirect('/index.php');  
     } 
+    
     $name = $_GET['name'];
 
-    if (!is_numeric($_GET['page'])) {
-        redirect('/index.php');
-    }
     if (empty($_GET['page'])) {
         $page = 1;
     } else {
+        if (!is_numeric($_GET['page'])) {
+            redirect('/index.php');
+        }
         $page = $_GET['page'];
     }
 
