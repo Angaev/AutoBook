@@ -62,28 +62,15 @@
     {        
         $start = ($page - 1) * LIMIT_ON_PAGE;
         $query = '
-              SELECT books.id, books.name, books.year, publishing_houses.house_name, 
-              IFNULL(books.image, "img/book_cover/no_cover.png") as image, 
-              IFNULL(COUNT(likes.book_id), 0) as likeCount, 
-              IFNULL(COUNT(comments.book_id), 0) as commentCount 
-              FROM books 
-              LEFT JOIN 
-                publishing_houses 
-                on books.publishing_house_id = publishing_houses.id 
-              LEFT JOIN 
-                likes 
-                on books.id = likes.book_id 
-                  and 
-                  likes.actual = 1 
-              LEFT JOIN 
-                comments 
-                ON books.id = comments.book_id 
-                  and 
-                  comments.actual = 1 
+              SELECT books.id, books.name, books.year,
+              IFNULL(books.image, "img/book_cover/no_cover.png") as image,
+              (SELECT COUNT(DISTINCT id) FROM likes WHERE likes.book_id = books.id AND likes.actual = 1) AS likeCount, 
+              (SELECT COUNT(DISTINCT id) FROM comments WHERE comments.book_id = books.id AND comments.actual = 1) AS commentCount 
+              FROM books      
+              LEFT JOIN publishing_houses ON books.publishing_house_id = publishing_houses.id 
               WHERE 
-                books.name LIKE "%' . dbQuote($name) . '%"
-              GROUP BY books.id, books.name, books.year, publishing_houses.house_name, 
-              image              
+                books.name LIKE "%' . dbQuote($name) . '%"   
+              ORDER BY books.id
               LIMIT ' . dbQuote($start) . ', ' . dbQuote(LIMIT_ON_PAGE);
 
         return dbQueryGetResult($query);
