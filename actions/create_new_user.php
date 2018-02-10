@@ -9,7 +9,7 @@
     $pass2 = $_POST['pass2'];
     
     if (strcmp($pass1, $pass2) !== 0) {
-        redirect('/login.php?result=reg_fail');
+        redirect('/login.php?result=' . ERR_USER_REGISTRATION_FAIL);
     }
     
     $passHash = md5($pass1);

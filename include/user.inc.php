@@ -1,5 +1,8 @@
 <?php
 
+    define("ERR_USER_REGISTRATION_FAIL", 1);
+    define("ERR_USER_REGISTRATION_DONE", 2);
+
     function isUserExistByEmail($email)
     {
         $query = 'SELECT * FROM users WHERE email =' . dbQuote($email);
