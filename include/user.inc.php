@@ -175,7 +175,8 @@
                       WHERE 
                           id = "' . dbQuote($userData['id']) . '"';
             return dbQuery($query);
-        }
+        } 
+        return true;
     }
     
     function updateUserImg($userData)
