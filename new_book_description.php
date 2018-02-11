@@ -6,8 +6,8 @@
     $book_id = $_GET["id"];
     
     $messages = [
-        'ok' => "Обложка добавлена",
-        'fail' => "Не удалось добавить описание"
+        ALL_RIGHT => "Обложка добавлена",
+        FAIL => "Не удалось добавить описание"
     ];
     $messageId = isset($_GET["result"]) ? ($_GET["result"]) : 0;
     $message = isset($messages[$messageId]) ? $messages[$messageId] : "";

@@ -7,11 +7,11 @@
     $userInfo = findUserByLogin($login, $pass);
     
     if (empty($userInfo)) {
-        redirect('/login.php?result=wrong_data');
+        redirect('/login.php?result=' . ERR_USER_REGISTRATION_WRONG_DATA);
     }
     
     if (isUserBan($userInfo['id'])) {
-        redirect('/login.php?result=ban');
+        redirect('/login.php?result=' . ERR_USER_REGISTRATION_BAN);
     }
     
     saveSessionUser($userInfo);

@@ -2,7 +2,6 @@
     require_once('include/common.inc.php');
     $message = null;
 
-    
     if (empty($_GET['page'])) {
         $page = 1;
     } else {

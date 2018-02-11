@@ -7,8 +7,8 @@
     $book_id = $_GET["id"];
     
     $messages = [
-        'ok' => "Обложка добавлена",
-        'fail' => "Не удалось добавить обложку"
+        ALL_RIGHT => "Обложка добавлена",
+        FAIL => "Не удалось добавить обложку"
     ];
     $messageId = isset($_GET["result"]) ? intval($_GET["result"]) : 0;
     $message = isset($messages[$messageId]) ? $messages[$messageId] : "";

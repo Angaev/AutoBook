@@ -2,8 +2,8 @@
     require_once('include/common.inc.php');
 
     $messages = [
-        'ok' => "Выполнено",
-        'fail' => "Не удалось выполнить"
+        ALL_RIGHT => "Выполнено",
+        FAIL => "Не удалось выполнить"
     ];
     $messageId = isset($_GET["result"]) ? ($_GET["result"]) : 0;
     $message = isset($messages[$messageId]) ? $messages[$messageId] : "";

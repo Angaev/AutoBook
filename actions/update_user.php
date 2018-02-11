@@ -10,12 +10,12 @@
     } 
     
     if (!isCorrectPass($_SESSION["user_id"], $_POST['oldPass'])) {
-        redirect('/edit_profile.php?result=fail');
+        redirect('/edit_profile.php?result=' . ERR_USER_REGISTRATION_FAIL);
     }
   
   
     if ($_POST['pass1'] != $_POST['pass2']) {
-        redirect('/edit_profile.php?result=fail');
+        redirect('/edit_profile.php?result=' . FAIL);
     }
   
     $userData['name'] = $_POST['name'];
@@ -32,9 +32,9 @@
     $userData['path'] = saveFile(AVATAR_DIR, 'avatar', $_SESSION["user_id"]);
     
     if (updateUserName($userData) && updateUserImg($userData) && updatePassword($userData)) {
-        redirect('/area.php?result=ok');
+        redirect('/area.php?result=' . ALL_RIGHT);
     } else {
-        redirect('/edit_profile.php?result=fail');
+        redirect('/edit_profile.php?result=' . FAIL);
     }
     
 

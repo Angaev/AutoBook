@@ -6,11 +6,11 @@
     }
     
     $messages = [
-        'reg_done' => "Вы зарегистированы",
+        ERR_USER_REGISTRATION_DONE => "Вы зарегистированы",
         ERR_USER_REGISTRATION_FAIL => "В регистрации отказано, попробуйте другие данные",
-        'wrong_data' => "Неверная пара email/пароль",
-        'wrong_email' => "Такая почта уже зарегистирована",
-        'ban' => "Учетная запись заблокирована"
+        ERR_USER_REGISTRATION_WRONG_DATA => "Неверная пара email/пароль",
+        ERR_USER_REGISTRATION_WRONG_EMAIL => "Такая почта уже зарегистирована",
+        ERR_USER_REGISTRATION_BAN => "Учетная запись заблокирована"
     ];
     $messageId = isset($_GET["result"]) ? ($_GET["result"]) : 0;
     $message = isset($messages[$messageId]) ? $messages[$messageId] : "";

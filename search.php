@@ -2,7 +2,7 @@
     require_once('include/common.inc.php');
 
     $messages = [
-        'ok' => "Запрос обработан"
+        ALL_RIGHT => "Запрос обработан"
     ];
     $messageId = isset($_GET["result"]) ? ($_GET["result"]) : 0;
     $message = isset($messages[$messageId]) ? $messages[$messageId] : "";

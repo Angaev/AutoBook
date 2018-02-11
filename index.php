@@ -2,10 +2,10 @@
     require_once('include/common.inc.php');
 
     $messages = [
-        'add_cover' => "Обложка добавлена",
-        'not_delete_book' => "Книга не удалена",
-        'delete_book' => "Книга удалена",
-        'add_book' => "Книга добавлена"
+        COVER_HAS_BEEN_ADD => "Обложка добавлена",
+        BOOK_HAS_NOT_BEEN_DELETE => "Книга не удалена",
+        BOOK_HAS_BEEN_DELETE => "Книга удалена",
+        BOOK_ADD => "Книга добавлена"
     ];
     $messageId = isset($_GET["result"]) ? ($_GET["result"]) : 0;
     $message = isset($messages[$messageId]) ? $messages[$messageId] : "";

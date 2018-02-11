@@ -11,7 +11,7 @@
     $id = $_GET['id'];
     
     if (flipBan($id)) {
-        redirect('/users.php?result=ok');
+        redirect('/users.php?result=' . ALL_RIGHT);
     } else {
-        redirect('/users.php?result=fail');
+        redirect('/users.php?result=' . FAIL);
     }
