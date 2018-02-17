@@ -215,14 +215,14 @@
         return($result[0]);
     }
     
-    function doesDataNewUserExist() 
+    function validateAddUserRequestData() 
     {
         return (!empty($_POST['email']) || !empty($_POST['pass1']) 
                   || !empty($_POST['pass2']) || !empty($_POST['name']) 
                       || !empty($_POST['subname'])); 
     }
     
-    function doesUpdateUserDataExist()
+    function validateUpdateUserRequestData()
     {
-        return (isDataNewUserExist() AND empty($_POST['oldPass']));
+        return (validateAddUserRequestData() AND empty($_POST['oldPass']));
     }

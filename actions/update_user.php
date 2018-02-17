@@ -5,7 +5,7 @@
         redirect('/index.php');
     }
     
-    if (!doesUpdateUserDataExist) {
+    if (!validateUpdateUserRequestData) {
         redirect('/index.php');
     } 
     
