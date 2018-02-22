@@ -17,8 +17,8 @@
   <div class="row">
     <div class="col-md-12 small_buttons_book">
        <form action="actions/add_publishing_house.php" method="post">
-        <label>Добавление нового издательства в базу</label>
-        <input type="text" class="form-control" id="new_publishing_house" name = "new_name" placeholder="Введите название добавляемого издательства" />
+        <label for="new_publishing_house">Добавление нового издательства в базу</label>
+        <input type="text" class="form-control" id="new_publishing_house" name = "new_name" placeholder="Введите название добавляемого издательства" required autocomplete="off"/>
         <button type="submit" class="btn btn-success small_buttons_book btn-sm">Добавить</button>
       </form>
     </div>
@@ -26,7 +26,12 @@
     <div class="col-md-12 small_buttons_book">
        <form action="actions/delete_publishing_house.php" method="post">
           <label for="delete_publishing_house">Удаление издательства из базы</label>
-          <input type="text" class="form-control" id="delete_publishing_house" name = "delete_name" placeholder="Введите название удаляемого издательства" />
+          <select name="publishing_house" class="form-control" required>
+            <option value="0">Выберите издательство</option>
+            {% for item in publishing_houses %}
+                <option value="{{ item.id }}">{{ item.house_name }}</option>
+            {% endfor %}
+          </select>
           <button type="submit" class="btn btn-danger small_buttons_book btn-sm">Удалить</button>
       </form>
     </div>
@@ -36,10 +41,15 @@
          <label>Переименование издательства в базе</label>
          <div class="row">
            <div class="col-md-6">
-            <input type="text" class="form-control" id="old_publishing_house" name = "old_name" placeholder="Введите изначальное название издательства" />
+             <select name="publishing_house" class="form-control" required>
+              <option value="0">Выберите издательство</option>
+              {% for item in publishing_houses %}
+                  <option value="{{ item.id }}">{{ item.house_name }}</option>
+              {% endfor %}
+             </select>
            </div>
            <div class="col-md-6">
-            <input type="text" class="form-control" id="rename_publishing_house" name = "rename" placeholder="Введите новое название издательства" />
+            <input type="text" class="form-control" id="rename_publishing_house" name = "rename" placeholder="Введите новое название издательства" required autocomplete="off"/>
            </div> 
          </div>
          <button type="submit" class="btn btn-warning small_buttons_book btn-sm">Переименовать</button>

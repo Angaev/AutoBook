@@ -31,10 +31,24 @@
         return dbQuery($query);
     }
     
+    //фукнция удаления издательства    
+    function deletePublishingHouseById($id)
+    {
+        $query = 'DELETE FROM publishing_houses WHERE id = "' . dbQuote($id) . '"';
+        return dbQuery($query);
+    }
+    
     //функция переименовывает издательство
     function renamePublishingHouse($oldName, $newName)
     {
         $query = 'UPDATE publishing_houses SET house_name = "' . dbQuote($newName) . '" WHERE house_name = "' . dbQuote($oldName) . '"';
+        return dbQuery($query);
+    }
+    
+    //функция переименовывает издательство
+    function renamePublishingHouseById($id, $newName)
+    {
+        $query = 'UPDATE publishing_houses SET house_name = "' . dbQuote($newName) . '" WHERE id = "' . dbQuote($id) . '"';
         return dbQuery($query);
     }
     

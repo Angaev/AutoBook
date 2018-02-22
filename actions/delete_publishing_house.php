@@ -1,12 +1,12 @@
 <?php
     require_once('../include/common.inc.php');
-    if (empty($_POST["delete_name"])) {
+    if (empty($_POST["publishing_house"])) {
         redirect('/edit_publishing_houses.php?result=' . FAIL);
     }
     
-    $delete_name = dbQuote($_POST["delete_name"]);
+    $deleteId = dbQuote($_POST["publishing_house"]);
           
-    if (deletePublishingHouse($delete_name)) {
+    if (deletePublishingHouseById($deleteId)) {
           redirect('/edit_publishing_houses.php?result=' . ALL_RIGHT);
     } else {
         redirect('/edit_publishing_houses.php?result=' . FAIL);

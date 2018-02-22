@@ -17,6 +17,7 @@
         'activeMenu' => '2', 
         'headerData' => loadHeaderLinks(),
         'titleText' => 'Редактирование издательств',
+        'publishing_houses' => loadAllPublishingHouses(),
         'message' => $message
     );
     echo getView('publishing_houses.twig', $vars);
