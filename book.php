@@ -42,6 +42,7 @@
         'countComment' => getCountCommentsBook($id),
         'isUserLogin' => isUserLogin(),
         'userData' => getUserData($userId),
-        'commentsData' => getCommentsBook($id)
+        'commentsData' => getCommentsBook($id),
+        'pageName' => 'book'
          );
     echo getView('book.twig', $vars);

@@ -11,10 +11,11 @@
       <img src="{{ book[0].image }}" class="img-responsive book_big_cover pull-right">
     </div>
      <div class="col-md-9">
+     <input type="hidden" id="book_id" value="{{ book[0].id }}"/>
       <h2>{{ book[0].name }}</h2>
       <h3>{{ book[0].house_name }}</h3>
       <h3>{{ book[0].year }}г.</h3>
-      <span class="like_big_icon">
+      <span class="like_big_icon" id="like_count">
         {{ book[0].likeCount }}
       </span>
       <span class="comment_big_icon">
@@ -25,16 +26,21 @@
         {% if link is  empty %} disabled {% endif %}">
           {% if link is  empty %} Нет активной ссылки {% else %} <span class="	glyphicon glyphicon-download"></span> Скачать {% endif %}
         </a>
+        {% if  likeBtn == 'free' %} 
+          <input type="hidden" id="likeBtn_status" value=1 />
+        {% else %}
+          <input type="hidden" id="likeBtn_status" value=2 />
+        {% endif %}
         {% if likeBtn != 'off' %}
-          <a href="actions/like_book.php?id={{ bookId }}" type="button" class="btn {% if likeBtn == 'lock' %}btn-primary {% elseif  likeBtn == 'free' %} btn-info {% endif %} btn-md"> 
+          <span href="actions/like_book.php?id={{ bookId }}" type="button" class="btn {% if likeBtn == 'lock' %}btn-primary {% elseif  likeBtn == 'free' %} btn-info {% endif %} btn-md" id="like_button"> 
             {% if  likeBtn == 'free' %} 
-              <span class="glyphicon glyphicon-heart"></span> 
-              Мне нравится
+              <span class="glyphicon glyphicon-heart" id="likeBtn_icon"></span>
+              <span id="likeBtn_text">Мне нравится</span>
             {% else %}
-              <span class="glyphicon glyphicon-thumbs-down"></span>
-              Больше не нравится
+              <span class="glyphicon glyphicon-thumbs-down" id="likeBtn_icon"></span>
+              <span id="likeBtn_text">Больше не нравится</span>
             {%endif%}
-          </a>
+          </span>
         {% endif %}
         
         {% if admin %}

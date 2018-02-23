@@ -317,3 +317,10 @@
             return $result[0]["Count"];
         }
     }
+    
+    function getCountLikesBookById($id)
+    {
+        $query = 'SELECT COUNT(*) FROM likes WHERE book_id = ' . dbQuote($id) . ' AND actual = 1';
+        $result = dbQueryGetResult($query);
+        return $result[0]["COUNT(*)"];
+    }
