@@ -1,5 +1,7 @@
 
 $(document).ready ( function() {
+  var NO_LIKE_PRESSED = 1;
+  var LIKE_PRESSED = 2;
   
   $("#like_button").click(function() {
     $.ajax ({
@@ -14,8 +16,8 @@ $(document).ready ( function() {
         },
         success: function(data) {
             $("#like_count").text(data);
-            if (Number($("#likeBtn_status").val()) === 1) {
-                $("#likeBtn_status").val(2);
+            if (Number($("#likeBtn_status").val()) === NO_LIKE_PRESSED) {
+                $("#likeBtn_status").val(LIKE_PRESSED);
                 $("#likeBtn_text").text("Больше не нравится");
                 
                 $("#likeBtn_icon").addClass("glyphicon-thumbs-down");
@@ -24,7 +26,7 @@ $(document).ready ( function() {
                 $("#like_button").addClass("btn-primary");
                 $("#like_button").removeClass("btn-info disabled");
             } else {
-                $("#likeBtn_status").val(1);
+                $("#likeBtn_status").val(NO_LIKE_PRESSED);
                 $("#likeBtn_text").text("Мне нравится");
 
                 $("#likeBtn_icon").removeClass("glyphicon-thumbs-down");
