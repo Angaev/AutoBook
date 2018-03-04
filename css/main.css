@@ -10,7 +10,7 @@
 .book_block
 {
   padding: 15px;
-  height: 445px;
+  height: 420px;
 }
 
 .book_block:hover
@@ -53,25 +53,30 @@
 {
   background-image:url(../img/like_icon.png);
   background-repeat: no-repeat;
-  background-size: 30px;
-  padding-left: 30px;
-  font-size: 30px;
+  background-size: 20px;
+  padding-left: 20px;
+  font-size: 20px;
 }
 
 .comment_big_icon
 {
   background-image:url(../img/comment_icon.png);
   background-repeat: no-repeat;
-  background-size: 30px;
-  padding-left: 30px;
-  margin-left: 30px;
-  font-size: 30px;
+  background-size: 20px;
+  padding-left: 20px;
+  margin-left: 20px;
+  font-size: 20px;
   background-position-y: 2px;
+}
+
+.button_group
+{
+  margin-top: 10px;
 }
 
 .buttons_book
 {
-  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
 .small_buttons_book
@@ -81,7 +86,7 @@
 
 .book_image_text_block
 {
-  height: 350px;
+  max-height: 350px;
   overflow: hidden;
 }
 
@@ -93,11 +98,7 @@
 .book_description
 {
   margin-bottom: 30px;
-}
-
-.commentsCnt
-{
-    
+  line-height: 1.5;  
 }
 
 .comment
@@ -157,15 +158,57 @@
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) 
-{
-  #headerwrap
-    {
-    margin-top:100px;
-  }
-  
+{ 
   .container 
-    {
+  {
     width: 800px;
+  }
+
+  .navbar-brand
+  {
+    display: none;
+  }
+
+  .add_comment_area
+  {
+    height: 210px;
+  }
+
+}
+
+@media only screen and (max-width: 766px) 
+{
+  .book_block
+  {
+    text-align: center;
+    max-width: 300px;
+  }
+
+  .book_cover
+  {
+    margin: 0 auto;
+  }
+
+  .add_comment_area
+  {
+    height: 210px;
+  }
+
+  .book_big_cover
+  {
+    width: 250px;
+  }
+
+  .button_group
+  {
+    width: 230px;
   }
 }
 
+@media only screen and (max-width: 615px) 
+{
+  .book_block
+  {
+    max-width: none;
+  }
+}
