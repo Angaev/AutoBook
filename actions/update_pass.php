@@ -5,17 +5,18 @@
         redirect('/index.php');
     }
     
-    if (!validateAddUserRequestData) {
-        redirect('/index.php');
-    } 
+    if (!isCorrectPass($_SESSION['user_id'], $_POST['oldPass'])) {
+        redirect('/edit_profile.php?result=' . BAD_PASS);
+    }
   
-    $userData['name'] = $_POST['name'];
-    $userData['subname'] = $_POST['subname'];
-    $userData['email'] = $_POST['email'];
+    if ($_POST['pass1'] != $_POST['pass2']) {
+        redirect('/edit_profile.php?result=' . FAIL);
+    }
+  
     $userData['pass'] = $_POST['pass1'];
     $userData['id'] = $_SESSION["user_id"];
         
-    if (updateUserName($userData)) {
+    if (updatePassword($userData)) {
         redirect('/edit_profile.php?result=' . ALL_RIGHT);
     } else {
         redirect('/edit_profile.php?result=' . FAIL);

@@ -15,3 +15,4 @@
     define("COVER_HAS_BEEN_ADD", 10);
     define("BOOK_HAS_NOT_BEEN_DELETE", 11);
     define("BOOK_HAS_BEEN_DELETE", 12);
+    define("BAD_PASS", 13);

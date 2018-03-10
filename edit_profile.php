@@ -9,7 +9,8 @@
     
     $messages = [
         ALL_RIGHT => "Изменения внесены",
-        FAIL => "Изменения не внесены"    
+        FAIL => "Изменения не внесены",
+        BAD_PASS => "Не правильный пароль"
     ];
     $messageId = isset($_GET["result"]) ? ($_GET["result"]) : 0;
     $message = isset($messages[$messageId]) ? $messages[$messageId] : "";

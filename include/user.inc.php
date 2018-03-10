@@ -160,7 +160,8 @@
         $query = 'UPDATE users
                   SET 
                       Name = "' . dbQuote($userData['name']) . '",
-                      Subname = "' . dbQuote($userData['subname']) . '"
+                      Subname = "' . dbQuote($userData['subname']) . '",
+                      Email = "' . dbQuote($userData['email']) . '"
                   WHERE 
                       id = "' . dbQuote($userData['id']) . '"';
         return dbQuery($query);
@@ -179,6 +180,16 @@
         return true;
     }
     
+    function deleteAvatar()
+    {
+        $query = 'UPDATE users
+                    SET
+                        img = NULL
+                    WHERE
+                        id = "' . dbQuote($_SESSION['user_id']) . '"';
+        dbQuery($query);
+    }
+
     function updateUserImg($userData)
     {
         if ((!$userData['path']) && (!$userData['deleteAvatar'])) {

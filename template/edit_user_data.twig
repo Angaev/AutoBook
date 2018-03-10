@@ -11,20 +11,22 @@
           <h3>Редактирование персональных данных</h3>
         </div>
         <div class="col-md-2">
-          <img src="{{ user.img }}" id="avatar" class="img-responsive img-circle center-block avatar_single visitcard">
+          <img src="{% if user.img == null %} /img/avatar/noavatar.png {% else %} {{ user.img }} {% endif %}" id="avatar" class="img-responsive img-circle center-block avatar_single visitcard">
           <div class="text-center">
             <label class="btn btn-primary btn-sm buttons_book">
               Загрузить новый аватар
               <input type="file" hidden id="fileChoice">
             </label>
-            <span class="btn btn-default btn-sm buttons_book">
-              Удалить аватар
-            </span>
+            {% if user.img != null %}
+              <span class="btn btn-default btn-sm buttons_book" id="deleteAvatar">
+                Удалить аватар
+              </span>
+            {% endif %}
           </div>
         </div>
         <div class="col-md-10">
           <h4>Основная информация</h4>
-          <form action="" method="post" enctype="multipart/form-data">
+          <form action="actions/update_user.php" method="post" enctype="multipart/form-data">
             <input type="hidden" value=" {{ userId }}" name="userId">
             <label for="username">Имя</label>
             <input class="form-control" id="username" value="{{ user["Name"] }}" name="name" autocomplete="off" required>
@@ -35,7 +37,7 @@
 
             <label for="userEmail">E-mail</label>
             <input class="form-control" id="userEmail" 
-            value="{{ user["email"] }}" name="email" autocomplete="off">
+            value="{{ user["email"] }}" name="email" autocomplete="off" required>
  
             <button type="submit" class="btn btn-info btn-sm btn-with-margin">
               Обновить информацию
@@ -43,20 +45,20 @@
           </form>
           
           <h4>Смена пароля</h4>
-          <form>
-            <label for="userOldPass">Пароль для подтверждения</label>
+          <form action="actions/update_pass.php" method="post" enctype="multipart/form-data">
+            <label for="userOldPass">Старый пароль</label>
             <input type="password" class="form-control" id="userOldPass" 
-            value="" name="oldPass" placeholder="Обязательно" required>
+            value="" name="oldPass" placeholder="Старый пароль" required>
             
-            <label for="userNewPass1">Смена пароля</label>
+            <label for="userNewPass1">Новый пароль</label>
             <div class="row">
               <div class="col-md-6">
                 <input type="password" class="form-control" id="userNewPass1" 
-                value="" name="pass1" placeholder="Запонить, если нужно обновить">
+                value="" name="pass1" placeholder="Новый пароль" required>
               </div>
               <div class="col-md-6">
                 <input type="password" class="form-control" id="userNewPass2" 
-                value="" name="pass2" placeholder="Повторите, чтобы не ошибиться">
+                value="" name="pass2" placeholder="Повторите, чтобы не ошибиться" required>
               </div>
             </div>
             
