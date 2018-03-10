@@ -20,6 +20,7 @@
         'titleText' => 'Редактирование ваших данных',
         'user' => loadUserData($id),
         'message' => $message,
-        'publishing_houses' => loadAllPublishingHouses()
+        'publishing_houses' => loadAllPublishingHouses(),
+        'pageName' => 'edit_data'
       );
     echo getView('edit_user_data.twig', $vars);

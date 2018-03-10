@@ -13,33 +13,30 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            
-            <img src= {% if userData["img"] != null %} "{{ userData["img"] }}" {% else %}"img/avatar/noavatar.png"  {% endif %} class="img-responsive img-circle pull-left avatar">
-            <h4>Привет, {{userData["Name"]}} {{userData["Subname"]}}!</h4>              
-            <div class="area_button">
-              <a href="edit_profile.php" class="btn btn-success btn-sm">
-                Редактировать данные
-              </a>
-              
-              {% if admin %}
-                <div class="btn-group">
-                  <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-sm">Администрирование <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                      <li><a href="users.php" target="_blank">Редактирование пользователей</a></li>
-                      <li><a href="edit_publishing_houses.php" target="_blank">Редактирование книжных издательств</a></li>
-                      <li><a href="new_book.php" target="_blank">Добавить книгу в библиотеку</a></li>
-                   </ul>
-                </div>
-              {% endif %}
+      <div class="col-md-2 col-sm-12 col-xs-12 visitcard">
+        <div class="no_horizontal_scroll ">
+          <img src= {% if userData["img"] != null %} "{{ userData["img"] }}" {% else %}"img/avatar/noavatar.png"  {% endif %} class="img-responsive img-circle center-block avatar_single">
+          <h4 class="text-center">{{userData["Name"]}} {{userData["Subname"]}}</h4>   
+        </div>
+        <div class="text-center">
+          <a href="edit_profile.php" class="btn btn-success btn-sm buttons_book">
+            Редактировать данные
+          </a>
+          
+          {% if admin %}
+            <div class="btn-group">
+              <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-sm buttons_book">Администрирование <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="users.php" target="_blank">Редактирование пользователей</a></li>
+                  <li><a href="edit_publishing_houses.php" target="_blank">Редактирование книжных издательств</a></li>
+                  <li><a href="new_book.php" target="_blank">Добавить книгу в библиотеку</a></li>
+               </ul>
             </div>
-          </div>
+          {% endif %}
         </div>
       </div>
       
-      <div class="col-md-6">
+      <div class="col-md-5 col-sm-6 col-xs-12">
         <div class="panel panel-default">
           <div class="panel-body">
             <h4>Вы писали</h4>
@@ -76,7 +73,7 @@
         </div>
       </div>
       
-      <div class="col-md-6">
+      <div class="col-md-5 col-sm-6 col-xs-12">
         <div class="panel panel-default">
           <div class="panel-body">
             <h4>Вам понравилось</h4>
