@@ -1,7 +1,5 @@
 
 $(document).ready ( function() {
-  var NO_LIKE_PRESSED = 1;
-  var LIKE_PRESSED = 2;
   
   $("#fileChoice").change(function() {
       console.log('Done');
@@ -13,9 +11,6 @@ $(document).ready ( function() {
         type: "POST",
         dataType : "json",
         data: ({}),
-        beforeSend: function() {
-          console.log("Отправка");
-        },
         success: function(data) {
             $("#avatar").attr("src", data);
             $("#deleteAvatar").text("Удалено");
