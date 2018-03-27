@@ -15,11 +15,11 @@
       <div class="col-md-6">
         <form action="actions/add_book_description.php" method="post">
           <div class="form-group">
-            <textarea class="form-control" name="book_description" rows="5"></textarea>
+            <textarea class="form-control" name="book_description" rows="5" required></textarea>
              <input type="hidden" name="book_id" value="{{ book_id }}">
           </div>
           <label>Ссылка на скачивание</label>
-          <input type="text" class="form-control" name="link" placeholder="Например www.yandex.ru">
+          <input type="text" class="form-control" name="link" placeholder="Например www.yandex.ru" required/>
           <button type="submit" class="btn btn-success small_buttons_book">Добавить</button>
         </form>
       </div>

@@ -27,7 +27,7 @@
        <form action="actions/delete_publishing_house.php" method="post">
           <label for="delete_publishing_house">Удаление издательства из базы</label>
           <select name="publishing_house" class="form-control" required>
-            <option value="0">Выберите издательство</option>
+            <option value="">Выберите издательство</option>
             {% for item in publishing_houses %}
                 <option value="{{ item.id }}">{{ item.house_name }}</option>
             {% endfor %}

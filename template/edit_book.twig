@@ -13,7 +13,7 @@
               <input type="hidden" value=" {{ bookId }}" name="bookId">
               <label for="bookName">Название</label>
               <input class="form-control" id="bookName" 
-              value="{{ book[0].name }}" name="name">
+              value="{{ book[0].name }}" name="name" required/>
               
               <label for="houseName">Издательство</label>
               <select name="publishing_house"  id="houseName" class="form-control">
@@ -24,13 +24,13 @@
               </select>
               
               <label for="bookYear">Год издания</label>
-              <input type="text" class="form-control" name="year" value="{{ book[0].year }}" id="bookYear">
+              <input type="text" class="form-control" name="year" value="{{ book[0].year }}" id="bookYear" required/>
               
               <label for="bookLink">Ссылка на скачивание</label>
-              <input type="text" class="form-control" name="link" value="{{ link }}" id="bookLink">
+              <input type="text" class="form-control" name="link" value="{{ link }}" id="bookLink" required/>
               
               <label for="bookDescription">Описание книги</label>
-              <textarea id="bookDescription" class="form-control" name="book_description" rows="5" value>{{ description }}</textarea>
+              <textarea id="bookDescription" class="form-control" name="book_description" rows="5" value required>{{ description }}</textarea>
               
               <label>Обложка книги</label>
               <input type="file" class="form-control" accept="image/*,image/jpeg" name="book_cover"/>
