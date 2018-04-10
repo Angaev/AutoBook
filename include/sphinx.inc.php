@@ -1,4 +1,7 @@
 <?php
+  //возвращает id, в которых есть $searchLine. Поиск с помощью Sphinx
+  function getIdBySphinx($searchLine)
+  {
     // Подключим файл с api
     include('Sphinx\api\sphinxapi.php');
 
@@ -10,7 +13,7 @@
 
     // Собственно поиск
     $cl->SetMatchMode( SPH_MATCH_ANY  ); // ищем хотя бы 1 слово из поисковой фразы
-    $result = $cl->Query("юных"); // поисковый запрос
+    $result = $cl->Query($searchLine); // поисковый запрос
 
     // обработка результатов запроса
     if ( $result === false ) { 
@@ -23,10 +26,10 @@
           }
 
           if ( ! empty($result["matches"]) ) { // если есть результаты поиска - обрабатываем их
-              foreach ( $result["matches"] as $product => $info ) {
-                    echo $product . "<br />"; // просто выводим id найденных товаров
+                return implode(', ', array_keys($result["matches"]));
               }
+          else 
+            return false;
           }
-      }
-
-  exit;
+      
+  }

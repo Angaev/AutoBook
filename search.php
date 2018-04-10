@@ -13,6 +13,7 @@
     } 
     
     $name = $_GET['name'];
+    $idList = getIdBySphinx($name);
 
     if (empty($_GET['page'])) {
         $page = 1;
@@ -28,7 +29,7 @@
     $vars = array( 
         'headerData' => loadHeaderLinks(),
         'titleText' => 'Поиск ' . $name,
-        'books' => getBooksByName($name, $page),
+        'books' => getBooksById($idList, $page),
         'search' => $name,
         'pageList' => getPageList($page, $lastPage),
         'pageName' => $_SERVER['SCRIPT_NAME'],

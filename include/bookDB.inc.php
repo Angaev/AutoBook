@@ -66,9 +66,26 @@
               (SELECT COUNT(DISTINCT id) FROM likes WHERE likes.book_id = books.id AND likes.actual = 1) AS likeCount, 
               (SELECT COUNT(DISTINCT id) FROM comments WHERE comments.book_id = books.id AND comments.actual = 1) AS commentCount 
               FROM books      
-              LEFT JOIN publishing_houses ON books.publishing_house_id = publishing_houses.id 
               WHERE 
                 books.name LIKE "%' . dbQuote($name) . '%"   
+              ORDER BY books.id
+              LIMIT ' . dbQuote($start) . ', ' . dbQuote(LIMIT_ON_PAGE);
+
+        return dbQueryGetResult($query);
+    }
+    
+    
+    function getBooksById($idList, $page)
+    {        
+        $start = ($page - 1) * LIMIT_ON_PAGE;
+        $query = '
+              SELECT books.id, books.name, books.year,
+              IFNULL(books.image, "img/book_cover/no_cover.png") as image,
+              (SELECT COUNT(DISTINCT id) FROM likes WHERE likes.book_id = books.id AND likes.actual = 1) AS likeCount, 
+              (SELECT COUNT(DISTINCT id) FROM comments WHERE comments.book_id = books.id AND comments.actual = 1) AS commentCount 
+              FROM books      
+              WHERE 
+                books.id IN (' . dbQuote($idList) . ')   
               ORDER BY books.id
               LIMIT ' . dbQuote($start) . ', ' . dbQuote(LIMIT_ON_PAGE);
 
