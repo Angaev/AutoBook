@@ -62,6 +62,14 @@
         return (!empty($_SESSION['user_id']));
     }
     
+    function getLoginUserId()
+    {
+        if (!isUserLogin()) {
+            return false;
+        }
+        return $_SESSION['user_id'];
+    }
+    
     function isAdmin() 
     {
         if (!isUserLogin()) {
@@ -191,16 +199,12 @@
     }
 
     function updateUserImg($userData)
-    {
-        if ((!$userData['path']) && (!$userData['deleteAvatar'])) {
-            return true;
-        }
-        
-        $image = (($userData['deleteAvatar'])) ? "NULL" : ('"' . dbQuote($userData['path']) . '"');
+    {   
+        $image = dbQuote($userData['path']);
 
         $query = 'UPDATE users
                   SET
-                      img = ' . $image . '
+                      img = "' . $image . '"
                   WHERE
                       id = "' . dbQuote($userData['id']) . '"';
                       
