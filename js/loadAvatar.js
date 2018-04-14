@@ -16,7 +16,6 @@ $(document).ready ( function() {
             success: function(phpResponse){
                 console.log(phpResponse);
                 $("#avatar").attr("src", phpResponse);
-                //поменять аваратку на полученную при ответе
             }
      });
   })

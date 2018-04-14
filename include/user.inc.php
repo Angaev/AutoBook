@@ -2,9 +2,9 @@
 
     function isUserExistByEmail($email)
     {
-        $query = 'SELECT * FROM users WHERE email =' . dbQuote($email);
-        $result = dbQuery($query);
-        return (isset($result));
+        $query = 'SELECT * FROM users WHERE email ="' . dbQuote($email) . '"';
+        $result = dbQueryGetResult($query);
+        return (!empty($result));
     }
     
     
