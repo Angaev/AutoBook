@@ -20,7 +20,7 @@
         'admin' => isAdmin(),
         'titleText' => 'Личный кабинет',
         'lastComment' => getLastComment($userId),
-        'books' => getLikesBooks($userId, 3),
+        'books' => getLikesBooks($userId, COUNT_LIKED_BOOKS),
         'message' => $message
         );
     echo getView('area.twig', $vars);

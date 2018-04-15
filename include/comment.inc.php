@@ -24,6 +24,8 @@
                     users as U ON C.user_id = U.id
                   WHERE
                     C.book_id = "' . dbQuote($book_id) . '" AND C.actual = 1
+                  ORDER BY 
+                  C.date DESC
                   ';
         return dbQueryGetResult($query);
     }
@@ -48,7 +50,7 @@
     function getLastComment($userId)
     {
         $query = '
-                  SELECT C.comment, B.name, C.date, C.book_id
+                  SELECT C.comment, B.name, C.date, C.book_id, C.date
                   FROM
                     comments as C
                   INNER JOIN

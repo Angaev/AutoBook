@@ -3,6 +3,7 @@
     define("AVATAR_DIR", "img/avatar/"); //адрес загрузки аватарок
     define("LIMIT_ON_PAGE", 20); //кол-во книг на страницу
     define("OFFSET_PAGINATION", 2); //размах от текущей странице в пагинации
+    define("COUNT_LIKED_BOOKS", 6); //количество книг в личном кабинете
     define("ERR_USER_REGISTRATION_DONE", 1);
     define("ERR_USER_REGISTRATION_FAIL", 2);
     define("ALL_RIGHT", 3);
@@ -16,3 +17,5 @@
     define("BOOK_HAS_NOT_BEEN_DELETE", 11);
     define("BOOK_HAS_BEEN_DELETE", 12);
     define("BAD_PASS", 13);
+    define("COMMENT_WAS_ADD", 14);
+    

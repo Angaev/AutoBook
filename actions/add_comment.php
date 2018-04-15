@@ -14,7 +14,7 @@
     $userId = $_SESSION['user_id'];
     
     if (addComment($userId, $bookId, $comment)) {
-        redirect('/book.php?book_id=' . $bookId);
+        redirect('/book.php?book_id=' . $bookId . '&result=' . COMMENT_WAS_ADD);
     } else {
-        redirect('/book.php?book_id=' . $bookId);
+        redirect('/book.php?book_id=' . $bookId . '&result=' . FAIL);
     }

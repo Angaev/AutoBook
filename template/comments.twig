@@ -1,6 +1,7 @@
 <div class="row">
-  <div class="col-md-12 col-sm-12 comments add_comment_area">
+  <div class="col-md-12 col-sm-12 col-xs-12 comments add_comment_area">
     <div class="commentsCnt">
+      <a href="comments"></a>
       <h3>
         Комментарии ({{ countComment }})
       </h3>
@@ -10,7 +11,7 @@
           <div>
             <form action="actions/add_comment.php" method="post">              
               <div class="form-group">
-                <textarea class="form-control" name="text" placeholder="Написать комментарий" required 
+                <textarea id="textInput" class="form-control" name="text" placeholder="Написать комментарий" required 
                 rows="4" style="resize:none"></textarea> 
                 <input type="hidden" name="book_id" value="{{ bookId }}"/>
               </div>
@@ -20,37 +21,32 @@
       </div>
     {% endif %}
   </div>
-  
-  <div class="col-md-12 col-sm-12 comments">
-    {% for comment in commentsData %}
-      <div class="comment">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="userName ">
-              <div class="pull-left" style="width 100px; height:100px;">
-                <img src={% if comment.img == null %} "img/avatar/noavatar.png" {% else %} "{{ comment.img }}"{% endif %} class="img-responsive img-circle avatar">
-              </div>
-              <span> 
-                {{ comment.Name }} {{ comment.Subname }} 
-              </span>
-              <span class="data_text">
+   
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <ul class="media-list">
+      {% for comment in commentsData %}
+        <li class="media">
+          <div class="media-left">
+            <img class="media-object img-circle avatar" src={% if comment.img == null %} "img/avatar/noavatar.png" {% else %} "{{ comment.img }}"{% endif %} alt="">
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">
+              {{ comment.Name }} {{ comment.Subname }}
+              <span class="date_text">
                 {{ comment.date }}
               </span>
-            </div>
-            <div class="commentText">
-              <span>{{ comment.comment|e|nl2br }}</span>
-            </div>
+            </h4>
+            {{ comment.comment|e|nl2br }}
             {% if admin %}
               <form action="actions/delete_comment.php" method="post">
                 <input type="hidden" name="commentId" value="{{ comment.id }}">
                 <input type="hidden" name="bookId" value="{{ comment.book_id }}">
-                <button type="submit" class="btn btn-danger pull-right btn-sm">Удалить</button>
+                <button id="deleteBtn" type="submit" class="btn btn-danger pull-right btn-sm">Удалить</button>
               </form>
             {% endif %}
-          </div>            
-        </div>
-      </div>
-    {% endfor %}
-    
+          </div>
+        </li>
+      {% endfor%}
+    </ul>
   </div>
 </div>

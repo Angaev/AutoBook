@@ -5,7 +5,8 @@
         ALL_RIGHT => 'Книга переименована',
         FAIL => 'Изменения не внесены, проверьте данные',
         BOOK_ADD => 'Книга обновлена',
-        COMMENT_WAS_DELETE => 'Комментарий удален'
+        COMMENT_WAS_DELETE => 'Комментарий удален',
+        COMMENT_WAS_ADD => 'Комментарий добавлен'
     ];
     $messageId = isset($_GET["result"]) ? ($_GET["result"]) : 0;
     $message = isset($messages[$messageId]) ? $messages[$messageId] : "";

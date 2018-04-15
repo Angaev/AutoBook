@@ -131,6 +131,8 @@ body
 .comments
 {
   background: #f2f2f2;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
 }
 
 .book_description
@@ -182,9 +184,10 @@ body
   overflow-x: hidden;
 }
 
-.data_text
+.date_text
 {
-  font-size: 14px;
+  font-size: 12px;
+  color: gray;
 }
 
 .book_mini_description
@@ -209,6 +212,21 @@ body
   margin-bottom: 20px;
 }
 
+.avatar_btn
+{
+  width: 100%;
+}
+
+.block_bottom_offset
+{
+  margin-bottom: 5px;
+}
+
+.block_bottom_20_offset
+{
+  margin-bottom: 20px;
+}
+
 @media only screen and (min-width: 768px) and (max-width: 991px) 
 { 
   .container 
@@ -226,6 +244,13 @@ body
     height: 210px;
   }
 
+  .book_mini
+  {
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  
   .book_mini_cover
   {
     width: 60%;
@@ -236,6 +261,15 @@ body
     height: 255px;
   }
   
+  .avatar_btn
+  {
+    width: auto;
+  }
+  
+  .book_mini
+  {
+    height: 320px;
+  } 
 }
 
 @media only screen and (max-width: 766px) 
@@ -246,6 +280,13 @@ body
     max-width: 50%;
   }
 
+  .book_mini
+  {
+    max-width: 50%;
+    height: 250px;
+    overflow: hidden;
+  }
+  
   .book_cover
   {
     margin: 0 auto;
@@ -269,6 +310,11 @@ body
   .book_mini_cover
   {
     width: 40%;
+  }
+  
+  .avatar_btn
+  {
+    width: auto;
   }  
 }
 
@@ -277,5 +323,17 @@ body
   .book_block
   {
     max-width: none;
+  }
+  
+  .book_mini
+  {
+    max-width: none;
+    height: auto;
+    overflow: hidden;
+  }
+  
+  .avatar_btn
+  {
+    width: auto;
   }
 }

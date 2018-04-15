@@ -20,12 +20,12 @@
         </div>
         <div class="text-center">
           <a href="edit_profile.php" class="btn btn-success btn-sm buttons_book">
-            Редактировать данные
+            <span class="glyphicon glyphicon-pencil "></span> Редактировать данные
           </a>
           
           {% if admin %}
             <div class="btn-group">
-              <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-sm buttons_book">Администрирование <span class="caret"></span></button>
+              <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-sm buttons_book"> <span class="glyphicon glyphicon-cog"></span> Администрирование <span class="caret"></span></button>
                 <ul class="dropdown-menu">
                   <li><a href="users.php" target="_blank">Редактирование пользователей</a></li>
                   <li><a href="edit_publishing_houses.php" target="_blank">Редактирование книжных издательств</a></li>
@@ -36,68 +36,68 @@
         </div>
       </div>
       
-      <div class="col-md-5 col-sm-6 col-xs-12">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <h4>Вы писали</h4>
-            {% if lastComment is not empty%}
-              <div class="comment">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="userName ">
-                      <img src= {% if userData["img"] != null %} "{{ userData["img"] }}" {% else %}"img/avatar/noavatar.png"  {% endif %} class="img-responsive img-circle pull-left avatar">
-                      <span> 
-                        {{userData["Name"]}} {{userData["Subname"]}}
-                      </span>
-                      <h5 class="gray_text">
-                        К книге: <a href="book.php?book_id={{ lastComment["book_id"] }}">{{ lastComment["name"] }} </a>
-                      </h5>
-                    </div>
-                    <div class="commentText text-justify">
-                      <span>{{ lastComment["comment"]|e|nl2br }}</span>
+      <div class="col-md-10 col-sm-12 col-xs-12">
+      
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h4>Вы писали</h4>
+              {% if lastComment is not empty%}
+                <div class="comment">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="gray_text">
+                         {{ lastComment["date"] }}
+                        <h5 class="gray_text">
+                          К книге: <a href="book.php?book_id={{ lastComment["book_id"] }}">{{ lastComment["name"] }}</a>
+                        </h5>
+                      </div>
+                      <div class="text-left">
+                        <span>{{ lastComment["comment"]|e|nl2br }}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            {% else %}
-              <p>
-                Здесь будут появляться Ваши комментарий
-              </p>
-            {% endif%}
-            {% if lastComment is not empty%}
-              <a href="all_comments.php"> 
-                Посмотреть все <span class="glyphicon glyphicon-menu-right"></span>
-              </a>
-            {% endif%}
+              {% else %}
+                <p>
+                  Здесь будут появляться Ваши комментарий
+                </p>
+              {% endif%}
+              {% if lastComment is not empty%}
+                <a href="all_comments.php"> 
+                  Посмотреть все <span class="glyphicon glyphicon-menu-right"></span>
+                </a>
+              {% endif%}
+            </div>
           </div>
         </div>
-      </div>
-      
-      <div class="col-md-5 col-sm-6 col-xs-12">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <h4>Вам понравилось</h4>
-            {% if books is not empty %}
-              <div class="row">
-                {% for item in books %}   
-                  <a href="book.php?book_id={{ item.id }}">
-                    <div class="col-md-4 ">
-                      <img src= {% if item.image is not empty %} "{{ item.image }}" {% else %} "img/book_cover/no_cover.png" {% endif %} class="img-responsive book_mini_cover">
-                      <p class="book_mini_description">
-                        {{ item.name }}
-                      </p>
-                    </div>
-                  </a>
-                {% endfor %}
-              </div>  
-              <a href="liked_books.php"> 
-                Посмотреть все <span class="glyphicon glyphicon-menu-right"></span>
-              </a>
-            {% else %}
-              <h4>
-                Здесь будут книги, которые Вам понравились
-              </h4> 
-            {% endif %}
+        
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h4>Вам понравилось</h4>
+              {% if books is not empty %}
+                <div class="row">
+                  {% for item in books %}   
+                    <a href="book.php?book_id={{ item.id }}">
+                      <div class="col-md-2 col-sm-4 col-xs-12 book_mini">
+                        <img src= {% if item.image is not empty %} "{{ item.image }}" {% else %} "img/book_cover/no_cover.png" {% endif %} class="img-responsive book_mini_cover">
+                        <p class="book_mini_description">
+                          {{ item.name }}
+                        </p>
+                      </div>
+                    </a>
+                  {% endfor %}
+                </div>  
+                <a href="liked_books.php"> 
+                  Посмотреть все <span class="glyphicon glyphicon-menu-right"></span>
+                </a>
+              {% else %}
+                <h4>
+                  Здесь будут книги, которые Вам понравились
+                </h4> 
+              {% endif %}
+            </div>
           </div>
         </div>
       </div>

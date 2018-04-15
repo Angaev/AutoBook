@@ -16,37 +16,32 @@
     <div class="row">
       <div class="col-md-12">
         {% if allComments is not empty %}
-          {% for item in allComments %}
-            <div class="panel panel-default">
-              <div class="panel-body">
-                <div class="comment">
-                  <div class="row">
-                    <div class="col-md-10">
-                      <div class="userName ">
-                        <img src={% if userData["img"] != null %} "{{ userData["img"] }}" {% else %}"img/avatar/noavatar.png"  {% endif %} class="img-responsive img-circle pull-left avatar">
-                        <span> 
-                          {{userData["Name"]}} {{userData["Subname"]}}
-                        </span>
-                        <h5 class="gray_text">
-                          К книге: <a href="book.php?book_id={{ item["book_id"] }}">{{ item["name"]}}</a>
-                        </h5>
-                      </div>
-                      <div class="commentText">
-                        <span>{{ item["comment"]|e|nl2br }}</span>
-                      </div>
-                    </div>
-                  </div>
+          <ul class="media-list">
+            {% for item in allComments %}
+              <li class="media">
+                <div class="media-left">
+                    <img class="media-object avatar img-circle" src={% if userData["img"] != null %} "{{ userData["img"] }}" {% else %}"img/avatar/noavatar.png"  {% endif %} alt="">
                 </div>
-              </div>
-            </div>
-          {% endfor %}
-        {% else %}
-          <h4>
-            Похоже, Вы еще не оставили комментариев
-          </h4>
-        {% endif %}
-        
+                <div class="media-body">
+                    <h4 class="media-heading">{{userData["Name"]}} {{userData["Subname"]}}</h4>
+                    <h5 class="gray_text">
+                      К книге: <a href="book.php?book_id={{ item["book_id"] }}">{{ item["name"]}}</a>
+                    </h5>
+                    <h5 class="gray_text">
+                      Вы писали: 
+                    </h5>
+                    <span>{{ item["comment"]|e|nl2br }}</span>
+                </div>
+              </li>
+            {% endfor %}
+          {% else %}
+            <h4>
+              Похоже, Вы еще не оставили комментариев
+            </h4>
+          {% endif %}
+        </ul>
       </div>
+      
     </div>
 
 {% endblock %}
