@@ -16,6 +16,8 @@ $(document).ready ( function() {
             success: function(phpResponse){
                 console.log(phpResponse);
                 $("#avatar").attr("src", phpResponse);
+                $("#deleteAvatar").text("Удалить аватар");
+                $("#deleteAvatar").attr("disabled", false);
             }
      });
   })
